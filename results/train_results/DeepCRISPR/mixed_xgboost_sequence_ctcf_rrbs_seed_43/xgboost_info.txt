@@ -1,0 +1,99 @@
+XGBoost Experiment
+========================================
+Run name: mixed_xgboost_sequence_ctcf_rrbs_seed_43
+Time: 2026-09-14T10:26:36.706608
+Feature count: 184
+Best iteration: 135
+Best validation score: 0.14966709913802792
+Early stopping rounds: 30
+
+Hyperparameters
+----------------------------------------
+n_estimators: 300
+max_depth: 5
+learning_rate: 0.05
+subsample: 0.8
+colsample_bytree: 0.8
+min_child_weight: 1
+reg_alpha: 0.0
+reg_lambda: 1.0
+objective: reg:squarederror
+eval_metric: rmse
+random_state: 43
+n_jobs: -1
+
+Experiment Configuration
+----------------------------------------
+run_name: mixed_xgboost_sequence_ctcf_rrbs_seed_43
+model: xgboost
+model_module: src.xgboost.xgboost
+split_type: mixed
+cell_line: None
+cell_lines: ['hct116', 'hek293t', 'hela', 'hl60']
+environment: sequence_ctcf_rrbs
+combination: sequence_ctcf_rrbs
+selected_environments: ['CTCF', 'RRBS']
+environment_count: 2
+random_seed: 43
+train_ratio: 0.7
+validation_ratio: 0.15
+test_ratio: 0.15
+sequence_length: 23
+channel_count: 8
+channel_names: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+input_shape_train: [11736, 184]
+input_shape_valid: [2514, 184]
+input_shape_test: [2499, 184]
+use_scaler: False
+sequence_kernel: 3
+environment_kernel: 3
+epochs: 100
+batch_size: 64
+learning_rate: 0.001
+hidden_dim1: 128
+hidden_dim2: 64
+conv_channels1: 32
+conv_channels2: 64
+dropout: 0.2
+weight_decay: 0.0
+patience: 20
+min_delta: 1e-06
+data_fingerprint: ecac199fa27ea80d
+code_fingerprint: 2661d5bdd1cd9c2a
+env_fingerprint: py=3.10.21|numpy=2.2.6|pandas=2.3.3|scipy=1.15.2|scikit-learn=1.7.2|xgboost=2.0.3|torch=2.6.0+cu124|numba=?|joblib=1.6.0|cvd=7
+env_stack_id: 625cc71596d7d94d
+group_aware: True
+split_digest: 26ea68ffa65d09d3
+n_train: 11736
+n_valid: 2514
+n_test: 2499
+audit_train_test_sequence_overlap: 0
+audit_train_valid_sequence_overlap: 0
+audit_valid_test_sequence_overlap: 0
+audit_unique_train_sequences: 8727
+audit_unique_valid_sequences: 1866
+audit_unique_test_sequences: 1872
+audit_train_test_locus_overlap: 0
+audit_train_test_revcomp_overlap: 0
+input_dim: 184
+feature_count: 184
+best_iteration: 135
+best_score: 0.14966709913802792
+
+Validation Metrics
+----------------------------------------
+MSE: 0.022400240619084587
+RMSE: 0.14966709932074113
+MAE: 0.11707688671081815
+R2: 0.10681017377629931
+Pearson: 0.3306799982966045
+Spearman: 0.32454902940965735
+
+Test Metrics
+----------------------------------------
+MSE: 0.025084991617606387
+RMSE: 0.1583824220600455
+MAE: 0.12556859372567447
+R2: 0.09861021653539137
+Pearson: 0.3142238037339647
+Spearman: 0.31225220540758303

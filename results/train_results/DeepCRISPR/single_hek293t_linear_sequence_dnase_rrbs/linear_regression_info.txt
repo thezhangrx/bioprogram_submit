@@ -1,0 +1,81 @@
+Linear Regression Experiment
+========================================
+Run name: single_hek293t_linear_sequence_dnase_rrbs
+Time: 2026-09-14T10:21:32.000993
+Feature count: 161
+Numerical rank: 86
+Condition number: 142.97402188598278
+Scaler: False
+pinv_rcond: 1e-15
+
+Experiment Configuration
+----------------------------------------
+run_name: single_hek293t_linear_sequence_dnase_rrbs
+model: linear
+model_module: src.linear_regression.linear_regression
+split_type: single
+cell_line: hek293t
+cell_lines: ['hek293t']
+environment: sequence_dnase_rrbs
+combination: sequence_dnase_rrbs
+selected_environments: ['Dnase', 'RRBS']
+environment_count: 2
+random_seed: 42
+train_ratio: 0.7
+validation_ratio: 0.15
+test_ratio: 0.15
+sequence_length: 23
+channel_count: 8
+channel_names: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+input_shape_train: [1633, 184]
+input_shape_valid: [345, 184]
+input_shape_test: [355, 184]
+use_scaler: False
+sequence_kernel: 3
+environment_kernel: 3
+epochs: 100
+batch_size: 64
+learning_rate: 0.001
+hidden_dim1: 128
+hidden_dim2: 64
+conv_channels1: 32
+conv_channels2: 64
+dropout: 0.2
+weight_decay: 0.0
+patience: 20
+min_delta: 1e-06
+data_fingerprint: ecac199fa27ea80d
+code_fingerprint: 2661d5bdd1cd9c2a
+env_fingerprint: py=3.10.21|numpy=2.2.6|pandas=2.3.3|scipy=1.15.2|scikit-learn=1.7.2|xgboost=2.0.3|torch=2.6.0+cu124|numba=?|joblib=1.6.0|cvd=7
+env_stack_id: 625cc71596d7d94d
+group_aware: True
+split_digest: 993683c8c0d7f6dd
+n_train: 1633
+n_valid: 345
+n_test: 355
+audit_train_test_sequence_overlap: 0
+audit_train_valid_sequence_overlap: 0
+audit_valid_test_sequence_overlap: 0
+audit_unique_train_sequences: 1633
+audit_unique_valid_sequences: 345
+audit_unique_test_sequences: 355
+audit_train_test_locus_overlap: 0
+audit_train_test_revcomp_overlap: 0
+
+Validation Metrics
+----------------------------------------
+MSE: 0.016323003134319197
+RMSE: 0.12776150881356715
+MAE: 0.10115705350602883
+R2: -0.035950400715711206
+Pearson: 0.11483283360240468
+Spearman: 0.13530527531935688
+
+Test Metrics
+----------------------------------------
+MSE: 0.014705224406787738
+RMSE: 0.12126509970633652
+MAE: 0.10089316847668567
+R2: -0.019640565193677073
+Pearson: 0.10495583147028117
+Spearman: 0.08472554011360489
