@@ -1,0 +1,52 @@
+# ==============================================================================
+# CRISPR-Cas9 sgRNA AI Design & Interpretability Platform
+# 第一届全球大学生生命科学挑战赛 - 赛道二专用依赖清单
+#
+# 安装：
+#     pip install -r deploy/requirements.txt
+#
+# 本清单只声明「需要装哪些库」，**不锁定版本上限** —— 目的是让用户在干净机器上
+# 一次装得上。每个库的**最低版本要求**写在各组注释里。
+# 交付批次实际使用的版本见 README §3「项目推荐环境」；若要逐位复现交付产物，
+# 按那张表把下面各项锁定即可。
+#
+# 最低 Python 版本：3.9（交付批次与推荐环境为 3.10.x）
+# 适用平台：Windows / Linux / macOS
+# ==============================================================================
+
+# 1. 基础科学计算与表格处理 (Core Scientific Computing)
+#    最低版本：numpy >= 1.22.4 ｜ pandas >= 1.5.3 ｜ scipy >= 1.10.1
+numpy
+pandas
+scipy
+
+# 2. 传统机器学习与统计推断 (Machine Learning & Statistics)
+#    最低版本：scikit-learn >= 1.2.2 ｜ xgboost >= 1.7.5
+#    注：joblib 由 scikit-learn 自动带入，无需单列（交付批次为 1.6.0）。
+scikit-learn
+xgboost
+
+# 3. 深度学习框架 (Deep Learning Framework)
+#    最低版本：torch >= 2.0.0
+#    注：在支持 CUDA 的机器上自动启用 GPU 加速；纯 CPU 也能跑（分析层不需要 GPU）。
+#    若想显式安装 CPU 构建：
+#        pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch
+
+# 4. 生信图表与 23nt 位置热图绘制 (Visualization & Plotting)
+#    最低版本：matplotlib >= 3.7.1 ｜ seaborn >= 0.12.2
+matplotlib
+seaborn
+
+# 5. Excel 汇总视图 (Excel Export)
+#    最低版本：xlsxwriter >= 3.1；也可改用 openpyxl >= 3.1（二者装一个即可）。
+#    只有 rule_discovery.py 写多 Sheet 工作簿时需要；缺失时它会明确报错并提示安装，
+#    CSV 主结果不受影响。
+xlsxwriter
+
+# ------------------------------------------------------------------------------
+# 已移除的旧条目（全仓库零引用，装了也只是占空间）：
+#     statsmodels、shap、tabulate、jupyter、ipykernel、notebook
+#     biopython —— 只被第三方 CRISPRon 自己的代码使用，装在它自带的隔离 venv 里，
+#                  与本项目主环境无关（见 README §3）。
+# ------------------------------------------------------------------------------

@@ -1,0 +1,80 @@
+# ==============================================================================
+# .gitignore — 正式文件（代码 / 文档 / 数据 / 汇总表 / 交付产物）一律入库
+#              仅忽略：可重建的运行环境、本地测试与归档区（Delete/）
+# ==============================================================================
+
+# ---- 本地测试 / 归档区（不入库）----
+Delete/
+
+# ---- 运行环境（可重建）----
+.venv/
+venv/
+env/
+app/frontend/node_modules/
+app/frontend/dist/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+
+# ---- 旧布局的运行期目录（当前交付结构不使用）----
+# 交付批次在 results/train_results/ / results/summary/ / models/<数据集>/ / logs/<数据集>/
+results/batches/*
+!results/batches/ultimate_run/
+results/logs/*
+!results/logs/ultimate_run/
+models/weights/*
+!models/weights/ultimate_run/
+output/
+
+# ---- Agent / 开发工作区（与正式交付物隔离）----
+workspace/projects/
+workspace/runs/
+workspace/qc_sessions/
+workspace/agent/
+workspace/cache/
+workspace/scratch/
+workspace/temporary/
+workspace/environments/
+workspace/archive/
+workspace/credentials/
+
+# ---- 打包/临时文件 ----
+*.tar.gz
+*.zip
+.DS_Store
+Thumbs.db
+_no_upload/
+
+# ---- LaTeX 编译中间产物 ----
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+
+# 训练日志属于实验结果（logs/<数据集>/<run>/training.log），不受上面 *.log 规则影响
+!logs/**/*.log
+!results/logs/**/*.log
+
+# ---- HPC 上传包（派生目录）----
+/upload/
+/upload.tar.gz
+
+# ---- 第三方软件运行环境（CRISPRon）----
+# 只忽略可重建的解压实例与隔离 venv；原始包与依赖归档随仓库交付，
+# 使 deploy/crispron/ 在干净机器上可按 INSTALL_NOTES.md 完整重建。
+deploy/crispron/venv/
+!deploy/crispron/package/**
+!deploy/crispron/dependencies/**
