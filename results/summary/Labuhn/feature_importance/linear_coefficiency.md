@@ -1,0 +1,76 @@
+# Linear Regression Coefficients & Parameter Inference (Whitelist)
+
+> Significance codes based on BH-FDR: `***` p<0.001, `**` p<0.01, `*` p<0.05, `.` p<0.10
+
+| split_type | environment | cell_line | feature | Linear_Coefficient | SE | t_stat | p_value | FDR | sig |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| single | sequence | labuhn | pos1_A | 0.0233 | 0.0494 | 0.4713 | 0.6379 | 0.9359 |  |
+| single | sequence | labuhn | pos1_C | 0.0227 | 0.0487 | 0.4659 | 0.6417 | 0.9359 |  |
+| single | sequence | labuhn | pos1_G | 0.0604 | 0.0414 | 1.4589 | 0.1460 | 0.6414 |  |
+| single | sequence | labuhn | pos2_A | -0.0113 | 0.0484 | -0.2327 | 0.8162 | 0.9720 |  |
+| single | sequence | labuhn | pos2_C | 0.0127 | 0.0424 | 0.2988 | 0.7654 | 0.9709 |  |
+| single | sequence | labuhn | pos2_G | -0.0084 | 0.0447 | -0.1878 | 0.8512 | 0.9930 |  |
+| single | sequence | labuhn | pos3_A | -0.0507 | 0.0445 | -1.1404 | 0.2553 | 0.6976 |  |
+| single | sequence | labuhn | pos3_C | -0.0925 | 0.0423 | -2.1869 | 0.0298 | 0.4970 |  |
+| single | sequence | labuhn | pos3_G | -0.0246 | 0.0465 | -0.5289 | 0.5974 | 0.9292 |  |
+| single | sequence | labuhn | pos4_A | -0.0101 | 0.0440 | -0.2288 | 0.8192 | 0.9720 |  |
+| single | sequence | labuhn | pos4_C | 0.0698 | 0.0460 | 1.5159 | 0.1309 | 0.6414 |  |
+| single | sequence | labuhn | pos4_G | 0.0991 | 0.0429 | 2.3091 | 0.0218 | 0.4970 |  |
+| single | sequence | labuhn | pos5_A | -0.0599 | 0.0468 | -1.2808 | 0.2016 | 0.6414 |  |
+| single | sequence | labuhn | pos5_C | -0.0874 | 0.0497 | -1.7575 | 0.0802 | 0.6236 |  |
+| single | sequence | labuhn | pos5_G | -0.0118 | 0.0472 | -0.2507 | 0.8023 | 0.9720 |  |
+| single | sequence | labuhn | pos6_A | 0.0472 | 0.0447 | 1.0562 | 0.2920 | 0.7300 |  |
+| single | sequence | labuhn | pos6_C | 0.0192 | 0.0486 | 0.3950 | 0.6932 | 0.9709 |  |
+| single | sequence | labuhn | pos6_G | 0.0852 | 0.0464 | 1.8369 | 0.0675 | 0.5909 |  |
+| single | sequence | labuhn | pos7_A | 0.0157 | 0.0492 | 0.3181 | 0.7507 | 0.9709 |  |
+| single | sequence | labuhn | pos7_C | 0.0991 | 0.0468 | 2.1152 | 0.0355 | 0.4970 |  |
+| single | sequence | labuhn | pos7_G | 0.0689 | 0.0453 | 1.5218 | 0.1294 | 0.6414 |  |
+| single | sequence | labuhn | pos8_A | -0.0036 | 0.0461 | -0.0784 | 0.9376 | 1.0000 |  |
+| single | sequence | labuhn | pos8_C | 0.0418 | 0.0480 | 0.8713 | 0.3845 | 0.8411 |  |
+| single | sequence | labuhn | pos8_G | -0.0020 | 0.0485 | -0.0403 | 0.9679 | 1.0000 |  |
+| single | sequence | labuhn | pos9_A | -0.0066 | 0.0444 | -0.1494 | 0.8814 | 1.0000 |  |
+| single | sequence | labuhn | pos9_C | -0.0592 | 0.0450 | -1.3143 | 0.1901 | 0.6414 |  |
+| single | sequence | labuhn | pos9_G | 0.0165 | 0.0451 | 0.3661 | 0.7147 | 0.9709 |  |
+| single | sequence | labuhn | pos10_A | -0.0274 | 0.0479 | -0.5721 | 0.5678 | 0.9244 |  |
+| single | sequence | labuhn | pos10_C | -0.0513 | 0.0447 | -1.1460 | 0.2530 | 0.6976 |  |
+| single | sequence | labuhn | pos10_G | -0.0532 | 0.0430 | -1.2380 | 0.2170 | 0.6604 |  |
+| single | sequence | labuhn | pos11_A | -0.0334 | 0.0457 | -0.7307 | 0.4657 | 0.8673 |  |
+| single | sequence | labuhn | pos11_C | 0.0309 | 0.0446 | 0.6931 | 0.4889 | 0.8776 |  |
+| single | sequence | labuhn | pos11_G | 0.0494 | 0.0446 | 1.1079 | 0.2691 | 0.6976 |  |
+| single | sequence | labuhn | pos12_A | 0.0608 | 0.0460 | 1.3209 | 0.1879 | 0.6414 |  |
+| single | sequence | labuhn | pos12_C | 0.0129 | 0.0446 | 0.2890 | 0.7729 | 0.9709 |  |
+| single | sequence | labuhn | pos12_G | 0.0602 | 0.0459 | 1.3117 | 0.1910 | 0.6414 |  |
+| single | sequence | labuhn | pos13_A | 0.0631 | 0.0475 | 1.3299 | 0.1849 | 0.6414 |  |
+| single | sequence | labuhn | pos13_C | 0.1094 | 0.0440 | 2.4870 | 0.0136 | 0.4761 |  |
+| single | sequence | labuhn | pos13_G | 0.0887 | 0.0465 | 1.9084 | 0.0576 | 0.5909 |  |
+| single | sequence | labuhn | pos14_A | -0.0443 | 0.0500 | -0.8869 | 0.3761 | 0.8411 |  |
+| single | sequence | labuhn | pos14_C | 0.0437 | 0.0431 | 1.0134 | 0.3119 | 0.7412 |  |
+| single | sequence | labuhn | pos14_G | -0.0568 | 0.0444 | -1.2817 | 0.2012 | 0.6414 |  |
+| single | sequence | labuhn | pos15_A | -0.1217 | 0.0468 | -2.6019 | 0.0099 | 0.4761 |  |
+| single | sequence | labuhn | pos15_C | 0.0060 | 0.0444 | 0.1357 | 0.8922 | 1.0000 |  |
+| single | sequence | labuhn | pos15_G | -0.0249 | 0.0453 | -0.5493 | 0.5833 | 0.9280 |  |
+| single | sequence | labuhn | pos16_A | -0.0020 | 0.0468 | -0.0434 | 0.9654 | 1.0000 |  |
+| single | sequence | labuhn | pos16_C | -0.0258 | 0.0431 | -0.5976 | 0.5507 | 0.9244 |  |
+| single | sequence | labuhn | pos16_G | -0.0821 | 0.0447 | -1.8384 | 0.0673 | 0.5909 |  |
+| single | sequence | labuhn | pos17_A | -0.0498 | 0.0497 | -1.0015 | 0.3177 | 0.7412 |  |
+| single | sequence | labuhn | pos17_C | -0.0125 | 0.0442 | -0.2840 | 0.7767 | 0.9709 |  |
+| single | sequence | labuhn | pos17_G | -0.0656 | 0.0448 | -1.4629 | 0.1449 | 0.6414 |  |
+| single | sequence | labuhn | pos18_A | -0.0657 | 0.0463 | -1.4191 | 0.1572 | 0.6414 |  |
+| single | sequence | labuhn | pos18_C | 0.0213 | 0.0432 | 0.4924 | 0.6229 | 0.9359 |  |
+| single | sequence | labuhn | pos18_G | -0.0328 | 0.0454 | -0.7224 | 0.4708 | 0.8673 |  |
+| single | sequence | labuhn | pos19_A | 0.0064 | 0.0515 | 0.1240 | 0.9014 | 1.0000 |  |
+| single | sequence | labuhn | pos19_C | 0.0525 | 0.0471 | 1.1152 | 0.2659 | 0.6976 |  |
+| single | sequence | labuhn | pos19_G | 0.0174 | 0.0487 | 0.3574 | 0.7211 | 0.9709 |  |
+| single | sequence | labuhn | pos20_A | -0.0415 | 0.0562 | -0.7378 | 0.4614 | 0.8673 |  |
+| single | sequence | labuhn | pos20_C | -0.0845 | 0.0495 | -1.7059 | 0.0894 | 0.6257 |  |
+| single | sequence | labuhn | pos20_G | 0.0712 | 0.0495 | 1.4376 | 0.1519 | 0.6414 |  |
+| single | sequence | labuhn | pos21_A | -0.0230 | 0.0374 | -0.6140 | 0.5398 | 0.9244 |  |
+| single | sequence | labuhn | pos21_C | -0.0330 | 0.0565 | -0.5849 | 0.5592 | 0.9244 |  |
+| single | sequence | labuhn | pos21_G | 0.0135 | 0.0463 | 0.2913 | 0.7711 | 0.9709 |  |
+| single | sequence | labuhn | pos22_A | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 |  |
+| single | sequence | labuhn | pos22_C | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 |  |
+| single | sequence | labuhn | pos22_G | 6434800755.4377 | 8660500689.6228 | 0.7430 | 0.4582 | 0.8673 |  |
+| single | sequence | labuhn | pos23_A | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 |  |
+| single | sequence | labuhn | pos23_C | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 |  |
+| single | sequence | labuhn | pos23_G | -757246275458.1895 | 1019166271075.9376 | -0.7430 | 0.4582 | 0.8673 |  |
+| single | sequence | labuhn | Bias | 750811474703.3826 | 1010505770386.3146 | 0.7430 | 0.4582 | 0.8673 |  |

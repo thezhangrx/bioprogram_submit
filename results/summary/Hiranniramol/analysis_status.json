@@ -1,0 +1,110 @@
+{
+  "started_at": "2026-09-26T17:27:34.558786+00:00",
+  "completed_at": "2026-09-26T17:27:34.558802+00:00",
+  "tasks": [
+    {
+      "task_id": "qc",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "",
+      "artifact": "reports/data_quality.md"
+    },
+    {
+      "task_id": "prediction",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "",
+      "artifact": "tables/prediction_summary.csv"
+    },
+    {
+      "task_id": "environment_conditional_effect",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "tables/environment_conditional_delta_r2.csv (0 条件增量行 × 3 指标)",
+      "artifact": "tables/environment_conditional_delta_r2.csv"
+    },
+    {
+      "task_id": "environment_main_effect",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "",
+      "artifact": "tables/environment_main_effects.csv"
+    },
+    {
+      "task_id": "environment_factorial_dag",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "7 DAG, 0 conditional-ΔR², 0 interaction figures (ablation view 已移出交付范围 2026-09-25)",
+      "artifact": "tables/environment_edges.csv"
+    },
+    {
+      "task_id": "sequence_attribution",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "",
+      "artifact": "tables/attribution_summary.csv"
+    },
+    {
+      "task_id": "cnn_ism",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "",
+      "artifact": ""
+    },
+    {
+      "task_id": "motif_discovery",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "tables/motif_candidates.csv (32 motifs; 11210 seqlets)",
+      "artifact": "tables/motif_candidates.csv"
+    },
+    {
+      "task_id": "motif_enrichment",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "tables/motif_enrichment.csv (32 tests, 13 pass FDR<0.05)",
+      "artifact": "tables/motif_enrichment.csv"
+    },
+    {
+      "task_id": "bootstrap",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "tables/bootstrap_results.csv (0 ΔR² CIs); paired per-sample bootstrap",
+      "artifact": "tables/bootstrap_results.csv"
+    },
+    {
+      "task_id": "hypothesis_testing",
+      "selected": true,
+      "available": true,
+      "status": "completed",
+      "reason": "tables/permutation_results.csv (0 tests, BH-FDR by family)",
+      "artifact": "tables/permutation_results.csv"
+    },
+    {
+      "task_id": "fdr_correction",
+      "selected": true,
+      "available": true,
+      "status": "unavailable",
+      "reason": "no corrigible p-value family available in this batch",
+      "artifact": "tables/permutation_results.csv"
+    },
+    {
+      "task_id": "environment_anova",
+      "selected": true,
+      "available": true,
+      "status": "unavailable",
+      "reason": "insufficient_data: insufficient_data: n=7 < 32",
+      "artifact": "tables/anova_results.csv"
+    }
+  ]
+}

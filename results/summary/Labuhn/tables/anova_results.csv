@@ -1,0 +1,9 @@
+model_scope,split_type,cell_line,model,factor,effect,F_statistic,p_value,df_num,df_den,effect_size,ci_low,ci_high,n_obs,family_key,status,reason,FDR,fdr_family,fdr_status
+blocked_factorial,ALL,ALL,ALL,(none),,,,,,,,,7,environment_anova|global,unavailable,insufficient_data: n=7 < 32,,environment_anova|global,not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,cnn(3|3),(none),,,,,,,,,1,environment_anova_group|single|labuhn|cnn(3|3),unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|cnn(3|3),not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,cnn(5|3),(none),,,,,,,,,1,environment_anova_group|single|labuhn|cnn(5|3),unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|cnn(5|3),not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,cnn(7|3),(none),,,,,,,,,1,environment_anova_group|single|labuhn|cnn(7|3),unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|cnn(7|3),not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,linear,(none),,,,,,,,,1,environment_anova_group|single|labuhn|linear,unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|linear,not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,mlp,(none),,,,,,,,,1,environment_anova_group|single|labuhn|mlp,unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|mlp,not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,transformer,(none),,,,,,,,,1,environment_anova_group|single|labuhn|transformer,unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|transformer,not_applicable (family size 0 < 2)
+per_group_additive_main,single,labuhn,xgboost,(none),,,,,,,,,1,environment_anova_group|single|labuhn|xgboost,unavailable,insufficient_data: n=1 < 32,,environment_anova_group|single|labuhn|xgboost,not_applicable (family size 0 < 2)

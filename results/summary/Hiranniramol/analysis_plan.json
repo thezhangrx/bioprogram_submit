@@ -1,0 +1,25 @@
+{
+  "run_qc": true,
+  "run_prediction_analysis": true,
+  "environment": {
+    "enabled": true,
+    "conditional_effect": true,
+    "main_effect": true,
+    "interaction": true,
+    "anova": true
+  },
+  "sequence": {
+    "enabled": true,
+    "position_attribution": true,
+    "ism": true,
+    "motif_discovery": true,
+    "motif_enrichment": true
+  },
+  "statistics": {
+    "bootstrap": true,
+    "hypothesis_testing": true,
+    "permutation_test": true,
+    "fdr_correction": true,
+    "anova": true
+  }
+}

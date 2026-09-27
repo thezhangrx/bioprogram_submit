@@ -1,0 +1,39 @@
+{
+  "executed": {
+    "qc": "completed",
+    "prediction": "completed",
+    "environment_conditional_effect": "completed",
+    "environment_main_effect": "completed",
+    "bootstrap": "completed",
+    "hypothesis_testing": "completed",
+    "environment_anova": "unavailable",
+    "fdr_correction": "unavailable",
+    "environment_factorial_dag": "completed",
+    "sequence_attribution": "completed",
+    "cnn_ism": "completed",
+    "motif_discovery": "completed",
+    "motif_enrichment": "completed",
+    "visualization": "completed"
+  },
+  "completed_at": "2026-09-26T17:27:34.558802+00:00",
+  "status_counts": {
+    "unavailable": 2,
+    "completed": 11
+  },
+  "figures": [
+    "environment/factorial_dag/single_hiranniramol_cnn_3_3.png",
+    "environment/factorial_dag/single_hiranniramol_cnn_5_3.png",
+    "environment/factorial_dag/single_hiranniramol_cnn_7_3.png",
+    "environment/factorial_dag/single_hiranniramol_linear.png",
+    "environment/factorial_dag/single_hiranniramol_mlp.png",
+    "environment/factorial_dag/single_hiranniramol_transformer.png",
+    "environment/factorial_dag/single_hiranniramol_xgboost.png",
+    "plots/position_attribution_cnn_ig.png",
+    "plots/position_attribution_cnn_ism.png",
+    "plots/position_attribution_linear_coefficient.png",
+    "plots/position_attribution_mlp_ig.png",
+    "plots/position_attribution_transformer_attention.png",
+    "plots/position_attribution_xgboost_gain.png",
+    "plots/position_attribution_xgboost_treeshap.png"
+  ]
+}
