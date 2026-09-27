@@ -1,0 +1,83 @@
+CNN Experiment
+========================================
+Run name: single_hl60_cnn_sequence_ctcf_kernel_5
+Time: 2026-09-14T15:16:19.933031
+
+Configuration
+----------------------------------------
+run_name: single_hl60_cnn_sequence_ctcf_kernel_5
+model: cnn_dual_branch
+model_module: src.cnn.cnn
+split_type: single
+cell_line: hl60
+cell_lines: ['hl60']
+environment: sequence_ctcf
+combination: sequence_ctcf
+selected_environments: ['ctcf']
+environment_count: 1
+random_seed: 42
+train_ratio: 0.7
+validation_ratio: 0.15
+test_ratio: 0.15
+sequence_length: 23
+channel_count: 8
+channel_names: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+input_shape_train: [1453, 23, 8]
+input_shape_valid: [311, 23, 8]
+input_shape_test: [312, 23, 8]
+use_scaler: False
+sequence_kernel: 5
+environment_kernel: 3
+epochs: 100
+batch_size: 64
+learning_rate: 0.001
+hidden_dim1: 128
+hidden_dim2: 64
+conv_channels1: 32
+conv_channels2: 64
+dropout: 0.2
+weight_decay: 0.0
+patience: 20
+min_delta: 1e-06
+data_fingerprint: ecac199fa27ea80d
+code_fingerprint: 2661d5bdd1cd9c2a
+env_fingerprint: py=3.10.21|numpy=2.2.6|pandas=2.3.3|scipy=1.15.2|scikit-learn=1.7.2|xgboost=2.0.3|torch=2.6.0+cu124|numba=?|joblib=1.6.0|cvd=7
+env_stack_id: 625cc71596d7d94d
+group_aware: True
+split_digest: 1d2400890d904ce0
+n_train: 1453
+n_valid: 311
+n_test: 312
+audit_train_test_sequence_overlap: 0
+audit_train_valid_sequence_overlap: 0
+audit_valid_test_sequence_overlap: 0
+audit_unique_train_sequences: 1453
+audit_unique_valid_sequences: 311
+audit_unique_test_sequences: 312
+audit_train_test_locus_overlap: 0
+audit_train_test_revcomp_overlap: 0
+sequence_channels: 4
+environment_channels: 1
+best_epoch: 17
+best_validation_loss: 0.012696265118717668
+device_resolved: cuda
+torch_version: 2.6.0+cu124
+torch_cuda_build: 12.4
+
+Validation Metrics
+----------------------------------------
+MSE: 0.01269626493048131
+RMSE: 0.11267770378598115
+MAE: 0.08915479857342803
+R2: 0.154158885366935
+Pearson: 0.4173495047767694
+Spearman: 0.3891520988087734
+
+Test Metrics
+----------------------------------------
+MSE: 0.013397719667484905
+RMSE: 0.1157485190725346
+MAE: 0.09016328580223788
+R2: -0.07438100672085013
+Pearson: 0.23732076226215112
+Spearman: 0.2366580031435234

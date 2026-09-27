@@ -1,0 +1,83 @@
+MLP Experiment
+========================================
+Run name: single_hl60_mlp_all
+Time: 2026-09-14T11:25:38.914400
+
+Configuration
+----------------------------------------
+run_name: single_hl60_mlp_all
+model: mlp
+model_module: src.mlp.mlp
+split_type: single
+cell_line: hl60
+cell_lines: ['hl60']
+environment: all
+combination: all
+selected_environments: ['CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+environment_count: 4
+random_seed: 42
+train_ratio: 0.7
+validation_ratio: 0.15
+test_ratio: 0.15
+sequence_length: 23
+channel_count: 8
+channel_names: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+input_shape_train: [1453, 184]
+input_shape_valid: [311, 184]
+input_shape_test: [312, 184]
+use_scaler: False
+sequence_kernel: 3
+environment_kernel: 3
+epochs: 100
+batch_size: 64
+learning_rate: 0.001
+hidden_dim1: 128
+hidden_dim2: 64
+conv_channels1: 32
+conv_channels2: 64
+dropout: 0.2
+weight_decay: 0.0
+patience: 20
+min_delta: 1e-06
+data_fingerprint: ecac199fa27ea80d
+code_fingerprint: 2661d5bdd1cd9c2a
+env_fingerprint: py=3.10.21|numpy=2.2.6|pandas=2.3.3|scipy=1.15.2|scikit-learn=1.7.2|xgboost=2.0.3|torch=2.6.0+cu124|numba=?|joblib=1.6.0|cvd=7
+env_stack_id: 625cc71596d7d94d
+group_aware: True
+split_digest: 1d2400890d904ce0
+n_train: 1453
+n_valid: 311
+n_test: 312
+audit_train_test_sequence_overlap: 0
+audit_train_valid_sequence_overlap: 0
+audit_valid_test_sequence_overlap: 0
+audit_unique_train_sequences: 1453
+audit_unique_valid_sequences: 311
+audit_unique_test_sequences: 312
+audit_train_test_locus_overlap: 0
+audit_train_test_revcomp_overlap: 0
+input_dim: 184
+feature_count: 184
+best_epoch: 17
+best_validation_loss: 0.012222157824197574
+device_resolved: cuda
+torch_version: 2.6.0+cu124
+torch_cuda_build: 12.4
+
+Validation Metrics
+----------------------------------------
+MSE: 0.012222158051734072
+RMSE: 0.11055386945617993
+MAE: 0.08859724944331639
+R2: 0.18574448104964625
+Pearson: 0.43612634065383393
+Spearman: 0.44103189104226337
+
+Test Metrics
+----------------------------------------
+MSE: 0.011186684353942732
+RMSE: 0.10576712321861993
+MAE: 0.08198241837537633
+R2: 0.10292486360750941
+Pearson: 0.35876950378361555
+Spearman: 0.39687970925964416
