@@ -3,74 +3,72 @@
 > **参赛赛道**：赛道二 · AI 基因编辑与核酸工具设计
 > **公开数据库**：DeepCRISPR，Labuhn，Hiranniramol
 
+**目录**
 
-目录
-
-|-项目一览
-|----1. 项目简介
-|----2. 仓库结构
-|----3. 运行环境
-|----4. 数据集
-|-项目流程
-|----5. Feature schema（编写映射）
-|----6. 预处理（Preprocessing）
-|----7. 单 run 训练
-|----8. 数据挖掘（Data Digging）
-|----9. 评估（Evaluation）
-|----10. 结果汇总（Result Collection）
-|----11. 报告生成与表格收录
-|----12. 可视化（Visualization）
-|----13. 输出结构
-|----14. 完整流程代码
-|----15. 可复现性
-|-项目底层
-|----四维度：一个结论凭什么成立
-|----16. 模型性能指标（Performance metrics）
-|------16.1 各指标的原理与目标
-|------16.2 使用时必须注意的三个约定
-|----17. 可解释性方法（XAI methods）
-|------17.0 白名单（规定了"允许存在什么"）
-|------17.1 线性回归：回归系数 + 经典参数推断
-|------17.2 XGBoost：三种分裂重要度 + TreeSHAP
-|------17.3 MLP：积分梯度（IG）
-|------17.4 CNN：双分支 IG + 无符号 ISM
-|------17.5 Transformer：注意力强度 + 注意力熵
-|------17.6 归因稳健性：SNR 的 4 档分档
-|----18. 统计分析方法（Statistical methods）
-|------18.1 ANOVA：析因方差分析（Type-II 边际 / 额外平方和）
-|------18.2 Permutation test：符号翻转随机化检验
-|------18.3 Fisher 精确检验（Motif 富集）
-|------18.4 Bootstrap（6 种 CI 类型）
-|----19. 统计量
-|------19.1 p-value
-|------19.2 FDR（Benjamini–Hochberg q 值）
-|------19.3 CI（置信区间）—— 共 6 种类型
-|------19.4 η²（方差解释比）
-|----附：底座的其它支撑机制
-|-R1. 赛道二规律发现交付物（rule_discovery.py）
-|----这个程序做什么
-|----运行
-|----输出结构
-|----筛选顺序（三个文件各自的判据）
-|------<cell_line>_microenv.csv / <cell_line>_motif.csv / microenv_and_motif.csv
-|----可配置的评选标准
-|----科学声明
-|-R2. results/summary/<batch> 文件说明
-|----目录一览
-|----JSON（analysis_plan / analysis_status / execution_log）
-|----figures（environment / plots）
-|----report（overview / data_quality / anomaly_report）
-|----train_data/ 与 feature_importance/（含 cnn7_validation）
-|----tables（20 张表逐表说明）
-|----术语表
-|----科学声明
-|-R3. 平台外部验证说明
-|----R3.0 为什么要做外部验证
-|----R3.1 数据集层面的外部复现（Hiranniramol / Labuhn）
-|----R3.2 模型层面的外部对照（第三方预测平台 CRISPRon）
-|----R3.3 结论汇总：哪些 DeepCRISPR 挖掘结果被外部照应
-|----R3.4 局限与边界
-|-R4. 平台建设说明
+- [项目一览](#项目一览)
+  - [1. 项目简介](#1-项目简介)
+  - [2. 仓库结构](#2-仓库结构)
+  - [3. 运行环境](#3-运行环境)
+  - [4. 数据集](#4-数据集)
+- [项目流程](#项目流程)
+  - [5. Feature schema（编写映射）](#5-feature-schema编写映射)
+  - [6. 预处理（Preprocessing）](#6-预处理preprocessing)
+  - [7. 单 run 训练](#7-单run训练)
+  - [8. 数据挖掘（Data Digging）](#8-数据挖掘data-digging)
+  - [9. 评估（Evaluation）](#9-评估evaluation)
+  - [10. 结果汇总（Result Collection）](#10-结果汇总result-collection)
+  - [11. 报告生成与表格收录](#11报告生成与表格收录)
+  - [12. 可视化（Visualization）](#12-可视化visualization)
+  - [13. 输出结构](#13-输出结构具体解释见r2)
+  - [14. 完整流程代码](#14完整流程代码)
+  - [15. 可复现性](#15-可复现性)
+- [项目底层](#项目底层)
+  - [四维度：一个结论凭什么成立](#四维度一个结论凭什么成立)
+  - [16. 模型性能指标（Performance metrics）](#16模型性能指标performance-metrics)
+    - [16.1 各指标的原理与目标](#161-各指标的原理与目标)
+    - [16.2 使用时必须注意的三个约定](#162-使用时必须注意的三个约定)
+  - [17. 可解释性方法（XAI methods）](#17可解释性方法xai-methods)
+    - [17.0 白名单（规定了“允许存在什么”）](#170-白名单规定了允许存在什么)
+    - [17.1 线性回归：回归系数 + 经典参数推断](#171-线性回归回归系数--经典参数推断)
+    - [17.2 XGBoost：三种分裂重要度 + TreeSHAP](#172-xgboost三种分裂重要度--treeshap)
+    - [17.3 MLP：积分梯度（IG）](#173-mlp积分梯度ig)
+    - [17.4 CNN：双分支 IG + 无符号 ISM](#174-cnn双分支-ig--无符号-ism)
+    - [17.5 Transformer：注意力强度 + 注意力熵](#175-transformer注意力强度--注意力熵)
+    - [17.6 归因稳健性：SNR 的 4 档分档](#176-归因稳健性snr-的-4-档分档)
+  - [18. 统计分析方法（Statistical methods）](#18统计分析方法statistical-methods)
+    - [18.1 ANOVA：析因方差分析（Type-II 边际 / 额外平方和）](#181-anova析因方差分析type-ii-边际--额外平方和)
+    - [18.2 Permutation test：符号翻转随机化检验（Sign-flip）](#182-permutation-test符号翻转随机化检验sign-flip)
+    - [18.3 Fisher 精确检验（Motif 富集）](#183-fisher-精确检验motif-富集)
+    - [18.4 Bootstrap（6 种 CI 类型）](#184-bootstrap见-193-的-6-种-ci-类型)
+  - [19. 统计量](#19统计量)
+    - [19.1 p-value](#191-p-value)
+    - [19.2 FDR（Benjamini–Hochberg q 值）](#192-fdrbenjaminihochberg-q-值)
+    - [19.3 CI（置信区间）：6 种类型](#193-ci置信区间-本项目共-6-种类型逐项说明)
+    - [19.4 η²（方差解释比）](#194-η²方差解释比)
+  - [附：底座的其它支撑机制](#附底座的其它支撑机制)
+- [R1. 赛道二规律发现交付物（rule_discovery.py）](#r1赛道二规律发现交付物rule_discoverypy)
+  - [这个程序做什么](#这个程序做什么)
+  - [运行](#运行)
+  - [输出结构](#输出结构)
+  - [筛选顺序（三个文件各自的判据）](#筛选顺序三个文件各自的判据)
+  - [可配置的评选标准](#可配置的评选标准)
+  - [科学声明](#科学声明)
+- [R2. results/summary/`<batch>` 文件说明](#r2resultssummarybatch文件说明)
+  - [目录一览](#目录一览)
+  - [JSON](#json)
+  - [figures](#figures)
+  - [report](#report)
+  - [train_data/ 与 feature_importance/](#train_data-与-feature_importance)
+  - [tables](#tables)
+  - [术语表](#术语表)
+  - [科学声明](#科学声明-1)
+- [R3. 平台外部验证说明](#r3-平台外部验证说明)
+  - [R3.0 为什么要做外部验证](#r30-为什么要做外部验证)
+  - [R3.1 数据集层面的外部复现（Hiranniramol / Labuhn）](#r31-数据集层面的外部复现hiranniramol--labuhn)
+  - [R3.2 模型层面的外部对照（第三方预测平台 CRISPRon）](#r32-模型层面的外部对照第三方预测平台-crispron)
+  - [R3.3 结论汇总：哪些 DeepCRISPR 挖掘结果被外部照应](#r33-结论汇总哪些-deepcrispr-挖掘结果被外部照应)
+  - [R3.4 局限与边界](#r34-局限与边界)
+- [R4. 平台建设说明](#r4平台建设说明)
 
 ---
 # 项目一览
