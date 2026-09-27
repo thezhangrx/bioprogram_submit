@@ -30,6 +30,9 @@ ROOT = Path.cwd().parent if Path.cwd().name == "notebook" else Path.cwd()
 
 ## 范围说明
 
+- 可视化只展示与本配置归因方法对应的 **CNN IG 位置归因热图**
+  （`figures/plots/position_attribution_cnn_ig.png`）；条件 ΔR² 热图因该表当前含数值发散行
+  （`|ΔR²|` ≥ 10 的行占 55/2016，最大 3.97e20）而不在 notebook 内展示，原因写在第 ④ 节。
 - 演示配置是**单细胞系 + 单划分**，因此析因 ANOVA、两因子交互、跨细胞系泛化比例等需要
   跨上下文/跨细胞系的设计**不在本 notebook 展开**（原因见第 ④ 节）。
   这些产物在交付批次 `results/summary/DeepCRISPR/` 里都有，可直接打开核对。
