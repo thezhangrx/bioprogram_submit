@@ -1,0 +1,1 @@
+bb82cc905dfef5c11cedbee96b91dfd7e617c69a8144036c0f92bb02e843b3f1  crisproff-1.1.2.tar.gz
