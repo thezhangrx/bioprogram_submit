@@ -1,0 +1,22 @@
+2026-09-14 15:39:56,609 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 15:39:56,612 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'Dnase']
+2026-09-14 15:39:59,285 | INFO | Epoch    1 | Train Loss: 0.03348764 | Validation Loss: 0.03210705
+2026-09-14 15:39:59,785 | INFO | Epoch    2 | Train Loss: 0.03209566 | Validation Loss: 0.03137367
+2026-09-14 15:40:00,252 | INFO | Epoch    3 | Train Loss: 0.03083423 | Validation Loss: 0.03082642
+2026-09-14 15:40:00,899 | INFO | Epoch    4 | Train Loss: 0.03051845 | Validation Loss: 0.03010093
+2026-09-14 15:40:01,536 | INFO | Epoch    5 | Train Loss: 0.02964076 | Validation Loss: 0.02987853
+2026-09-14 15:40:02,790 | INFO | Epoch    7 | Train Loss: 0.02855413 | Validation Loss: 0.02917136
+2026-09-14 15:40:03,337 | INFO | Epoch    8 | Train Loss: 0.02832857 | Validation Loss: 0.02895207
+2026-09-14 15:40:04,497 | INFO | Epoch   10 | Train Loss: 0.02721349 | Validation Loss: 0.02862323
+2026-09-14 15:40:07,073 | INFO | Epoch   14 | Train Loss: 0.02608220 | Validation Loss: 0.02857955
+2026-09-14 15:40:10,245 | INFO | Epoch   20 | Train Loss: 0.02331010 | Validation Loss: 0.02904083
+2026-09-14 15:40:10,845 | INFO | Epoch   21 | Train Loss: 0.02342924 | Validation Loss: 0.02852006
+2026-09-14 15:40:16,265 | INFO | Epoch   30 | Train Loss: 0.01902707 | Validation Loss: 0.03119652
+2026-09-14 15:40:22,492 | INFO | Epoch   40 | Train Loss: 0.01502684 | Validation Loss: 0.03320081
+2026-09-14 15:40:23,058 | INFO | Early stopping triggered at epoch 41. Best epoch: 21
+2026-09-14 15:40:23,059 | INFO | Restored best checkpoint from epoch 21.
+2026-09-14 15:40:23,094 | INFO | Final Validation R2: 0.1408
+2026-09-14 15:40:23,138 | INFO | Final Test Evaluation -> R2: 0.0813, Pearson: 0.3231
+2026-09-14 15:40:23,138 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 15:40:27,605 | INFO | CNN XAI whitelist importance computed (115 features).
+2026-09-14 15:40:27,642 | INFO | CNN experiment finished successfully.

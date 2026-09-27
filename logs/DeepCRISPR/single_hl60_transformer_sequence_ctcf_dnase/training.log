@@ -1,0 +1,40 @@
+2026-09-14 12:36:54,906 | INFO | Starting Transformer experiment.
+2026-09-14 12:36:54,907 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 12:36:58,323 | INFO | Epoch    1 | Train Loss: 0.02994920 | Validation Loss: 0.01762984
+2026-09-14 12:36:58,609 | INFO | Epoch    2 | Train Loss: 0.01471927 | Validation Loss: 0.01536106
+2026-09-14 12:36:58,977 | INFO | Epoch    3 | Train Loss: 0.01379325 | Validation Loss: 0.01471258
+2026-09-14 12:36:59,522 | INFO | Epoch    5 | Train Loss: 0.01324858 | Validation Loss: 0.01462459
+2026-09-14 12:36:59,697 | INFO | Epoch    6 | Train Loss: 0.01347970 | Validation Loss: 0.01455743
+2026-09-14 12:37:00,012 | INFO | Epoch    8 | Train Loss: 0.01298322 | Validation Loss: 0.01439220
+2026-09-14 12:37:00,325 | INFO | Epoch   10 | Train Loss: 0.01237298 | Validation Loss: 0.01475087
+2026-09-14 12:37:00,471 | INFO | Epoch   11 | Train Loss: 0.01260862 | Validation Loss: 0.01403810
+2026-09-14 12:37:00,619 | INFO | Epoch   12 | Train Loss: 0.01214777 | Validation Loss: 0.01397663
+2026-09-14 12:37:00,778 | INFO | Epoch   13 | Train Loss: 0.01219892 | Validation Loss: 0.01358246
+2026-09-14 12:37:00,949 | INFO | Epoch   14 | Train Loss: 0.01204294 | Validation Loss: 0.01340120
+2026-09-14 12:37:01,459 | INFO | Epoch   17 | Train Loss: 0.01213309 | Validation Loss: 0.01320464
+2026-09-14 12:37:01,925 | INFO | Epoch   20 | Train Loss: 0.01211824 | Validation Loss: 0.01329557
+2026-09-14 12:37:02,085 | INFO | Epoch   21 | Train Loss: 0.01179559 | Validation Loss: 0.01305911
+2026-09-14 12:37:02,266 | INFO | Epoch   22 | Train Loss: 0.01142401 | Validation Loss: 0.01291135
+2026-09-14 12:37:03,417 | INFO | Epoch   28 | Train Loss: 0.01131625 | Validation Loss: 0.01287339
+2026-09-14 12:37:03,754 | INFO | Epoch   30 | Train Loss: 0.01107467 | Validation Loss: 0.01297255
+2026-09-14 12:37:04,220 | INFO | Epoch   32 | Train Loss: 0.01087803 | Validation Loss: 0.01283213
+2026-09-14 12:37:05,503 | INFO | Epoch   37 | Train Loss: 0.01082011 | Validation Loss: 0.01276595
+2026-09-14 12:37:06,086 | INFO | Epoch   40 | Train Loss: 0.01089418 | Validation Loss: 0.01366544
+2026-09-14 12:37:06,681 | INFO | Epoch   43 | Train Loss: 0.01083837 | Validation Loss: 0.01274962
+2026-09-14 12:37:06,855 | INFO | Epoch   44 | Train Loss: 0.01050360 | Validation Loss: 0.01273765
+2026-09-14 12:37:08,221 | INFO | Epoch   50 | Train Loss: 0.01034213 | Validation Loss: 0.01272204
+2026-09-14 12:37:09,423 | INFO | Epoch   55 | Train Loss: 0.01028420 | Validation Loss: 0.01270674
+2026-09-14 12:37:09,725 | INFO | Epoch   56 | Train Loss: 0.01025850 | Validation Loss: 0.01259758
+2026-09-14 12:37:11,342 | INFO | Epoch   60 | Train Loss: 0.01026164 | Validation Loss: 0.01314193
+2026-09-14 12:37:13,842 | INFO | Epoch   68 | Train Loss: 0.01001750 | Validation Loss: 0.01258932
+2026-09-14 12:37:14,200 | INFO | Epoch   70 | Train Loss: 0.00989690 | Validation Loss: 0.01329342
+2026-09-14 12:37:15,572 | INFO | Epoch   77 | Train Loss: 0.00952575 | Validation Loss: 0.01256567
+2026-09-14 12:37:16,316 | INFO | Epoch   80 | Train Loss: 0.00923575 | Validation Loss: 0.01290777
+2026-09-14 12:37:19,151 | INFO | Epoch   90 | Train Loss: 0.00889448 | Validation Loss: 0.01443511
+2026-09-14 12:37:21,136 | INFO | Early stopping triggered at epoch 97. Best epoch: 77
+2026-09-14 12:37:21,138 | INFO | Restored best checkpoint from epoch 77.
+2026-09-14 12:37:21,155 | INFO | Final Validation R2: 0.1629
+2026-09-14 12:37:21,170 | INFO | Final Test Evaluation -> R2: 0.1392, Pearson: 0.3927
+2026-09-14 12:37:21,170 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 12:37:21,183 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 12:37:21,249 | INFO | Transformer experiment finished successfully.

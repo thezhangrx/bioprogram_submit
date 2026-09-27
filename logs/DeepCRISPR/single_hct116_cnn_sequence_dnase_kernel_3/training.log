@@ -1,0 +1,23 @@
+2026-09-14 15:37:41,199 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 15:37:41,201 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'Dnase']
+2026-09-14 15:37:44,149 | INFO | Epoch    1 | Train Loss: 0.03324335 | Validation Loss: 0.03050204
+2026-09-14 15:37:44,439 | INFO | Epoch    2 | Train Loss: 0.02985670 | Validation Loss: 0.02931491
+2026-09-14 15:37:44,886 | INFO | Epoch    3 | Train Loss: 0.02895615 | Validation Loss: 0.02887389
+2026-09-14 15:37:45,200 | INFO | Epoch    4 | Train Loss: 0.02845470 | Validation Loss: 0.02779363
+2026-09-14 15:37:45,436 | INFO | Epoch    5 | Train Loss: 0.02844998 | Validation Loss: 0.02767752
+2026-09-14 15:37:45,911 | INFO | Epoch    7 | Train Loss: 0.02807039 | Validation Loss: 0.02765753
+2026-09-14 15:37:46,138 | INFO | Epoch    8 | Train Loss: 0.02772174 | Validation Loss: 0.02732952
+2026-09-14 15:37:46,638 | INFO | Epoch   10 | Train Loss: 0.02680090 | Validation Loss: 0.02756304
+2026-09-14 15:37:47,540 | INFO | Epoch   13 | Train Loss: 0.02651393 | Validation Loss: 0.02722978
+2026-09-14 15:37:49,304 | INFO | Epoch   20 | Train Loss: 0.02524242 | Validation Loss: 0.02705426
+2026-09-14 15:37:52,177 | INFO | Epoch   30 | Train Loss: 0.02403441 | Validation Loss: 0.02750422
+2026-09-14 15:37:54,732 | INFO | Epoch   39 | Train Loss: 0.02343750 | Validation Loss: 0.02703569
+2026-09-14 15:37:55,041 | INFO | Epoch   40 | Train Loss: 0.02331373 | Validation Loss: 0.02775637
+2026-09-14 15:37:57,935 | INFO | Epoch   50 | Train Loss: 0.02227802 | Validation Loss: 0.03263317
+2026-09-14 15:38:00,757 | INFO | Early stopping triggered at epoch 59. Best epoch: 39
+2026-09-14 15:38:00,759 | INFO | Restored best checkpoint from epoch 39.
+2026-09-14 15:38:00,788 | INFO | Final Validation R2: 0.0726
+2026-09-14 15:38:00,816 | INFO | Final Test Evaluation -> R2: 0.0626, Pearson: 0.2654
+2026-09-14 15:38:00,817 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 15:38:03,573 | INFO | CNN XAI whitelist importance computed (115 features).
+2026-09-14 15:38:03,615 | INFO | CNN experiment finished successfully.

@@ -1,0 +1,15 @@
+2026-09-14 10:55:49,042 | INFO | Starting MLP experiment.
+2026-09-14 10:55:49,042 | INFO | Device: cuda
+2026-09-14 10:55:50,727 | INFO | Train shape: (1633, 184), Test shape: (355, 184), Input dim: 184
+2026-09-14 10:55:50,953 | INFO | Epoch    1 | Train Loss: 0.02836468 | Validation Loss: 0.01609374
+2026-09-14 10:55:50,999 | INFO | Epoch    2 | Train Loss: 0.01570981 | Validation Loss: 0.01579440
+2026-09-14 10:55:51,093 | INFO | Epoch    4 | Train Loss: 0.01408136 | Validation Loss: 0.01546844
+2026-09-14 10:55:51,382 | INFO | Epoch   10 | Train Loss: 0.01038250 | Validation Loss: 0.01631431
+2026-09-14 10:55:51,875 | INFO | Epoch   20 | Train Loss: 0.00581402 | Validation Loss: 0.01967338
+2026-09-14 10:55:52,070 | INFO | Early stopping triggered at epoch 24. Best epoch: 4
+2026-09-14 10:55:52,071 | INFO | Restored best checkpoint from epoch 4.
+2026-09-14 10:55:52,077 | INFO | Final Validation R2: 0.0183
+2026-09-14 10:55:52,079 | INFO | Final Test Evaluation -> R2: 0.0026, Pearson: 0.1421
+2026-09-14 10:55:52,079 | INFO | Computing Integrated Gradients whitelist importance...
+2026-09-14 10:55:52,342 | INFO | MLP XAI whitelist importance computed (184 features).
+2026-09-14 10:55:52,358 | INFO | MLP experiment finished successfully.

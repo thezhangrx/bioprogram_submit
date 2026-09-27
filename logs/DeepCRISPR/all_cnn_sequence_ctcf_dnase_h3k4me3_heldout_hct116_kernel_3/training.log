@@ -1,0 +1,22 @@
+2026-09-14 19:29:39,168 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 19:29:39,177 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3']
+2026-09-14 19:29:41,836 | INFO | Epoch    1 | Train Loss: 0.02722373 | Validation Loss: 0.02660551
+2026-09-14 19:29:42,344 | INFO | Epoch    2 | Train Loss: 0.02621361 | Validation Loss: 0.02611262
+2026-09-14 19:29:43,218 | INFO | Epoch    3 | Train Loss: 0.02597117 | Validation Loss: 0.02606174
+2026-09-14 19:29:46,345 | INFO | Epoch    6 | Train Loss: 0.02553286 | Validation Loss: 0.02583851
+2026-09-14 19:29:47,347 | INFO | Epoch    7 | Train Loss: 0.02526643 | Validation Loss: 0.02580626
+2026-09-14 19:29:48,125 | INFO | Epoch    8 | Train Loss: 0.02533066 | Validation Loss: 0.02565423
+2026-09-14 19:29:49,457 | INFO | Epoch   10 | Train Loss: 0.02527149 | Validation Loss: 0.02584722
+2026-09-14 19:29:56,638 | INFO | Epoch   18 | Train Loss: 0.02452013 | Validation Loss: 0.02546351
+2026-09-14 19:29:58,024 | INFO | Epoch   20 | Train Loss: 0.02443259 | Validation Loss: 0.02540481
+2026-09-14 19:30:06,127 | INFO | Epoch   30 | Train Loss: 0.02375330 | Validation Loss: 0.02551825
+2026-09-14 19:30:08,501 | INFO | Epoch   33 | Train Loss: 0.02353090 | Validation Loss: 0.02530625
+2026-09-14 19:30:12,939 | INFO | Epoch   40 | Train Loss: 0.02311693 | Validation Loss: 0.02588480
+2026-09-14 19:30:19,329 | INFO | Epoch   50 | Train Loss: 0.02265457 | Validation Loss: 0.02566317
+2026-09-14 19:30:21,819 | INFO | Early stopping triggered at epoch 53. Best epoch: 33
+2026-09-14 19:30:21,821 | INFO | Restored best checkpoint from epoch 33.
+2026-09-14 19:30:21,866 | INFO | Final Validation R2: 0.0464
+2026-09-14 19:30:21,982 | INFO | Final Test Evaluation -> R2: 0.0413, Pearson: 0.2066
+2026-09-14 19:30:21,983 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 19:30:41,263 | INFO | CNN XAI whitelist importance computed (161 features).
+2026-09-14 19:30:41,369 | INFO | CNN experiment finished successfully.

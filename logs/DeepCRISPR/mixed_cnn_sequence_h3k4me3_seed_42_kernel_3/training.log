@@ -1,0 +1,22 @@
+2026-09-14 16:16:27,325 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 16:16:27,330 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'H3K4me3']
+2026-09-14 16:16:30,424 | INFO | Epoch    1 | Train Loss: 0.02850974 | Validation Loss: 0.02747735
+2026-09-14 16:16:31,438 | INFO | Epoch    2 | Train Loss: 0.02715234 | Validation Loss: 0.02740535
+2026-09-14 16:16:32,325 | INFO | Epoch    3 | Train Loss: 0.02682139 | Validation Loss: 0.02696125
+2026-09-14 16:16:35,339 | INFO | Epoch    6 | Train Loss: 0.02587923 | Validation Loss: 0.02650761
+2026-09-14 16:16:38,890 | INFO | Epoch   10 | Train Loss: 0.02543117 | Validation Loss: 0.02662682
+2026-09-14 16:16:42,322 | INFO | Epoch   14 | Train Loss: 0.02501801 | Validation Loss: 0.02644598
+2026-09-14 16:16:43,893 | INFO | Epoch   15 | Train Loss: 0.02500041 | Validation Loss: 0.02643704
+2026-09-14 16:16:47,088 | INFO | Epoch   18 | Train Loss: 0.02480680 | Validation Loss: 0.02630205
+2026-09-14 16:16:48,863 | INFO | Epoch   20 | Train Loss: 0.02465181 | Validation Loss: 0.02658748
+2026-09-14 16:16:50,184 | INFO | Epoch   21 | Train Loss: 0.02452979 | Validation Loss: 0.02624449
+2026-09-14 16:16:54,097 | INFO | Epoch   25 | Train Loss: 0.02451397 | Validation Loss: 0.02619005
+2026-09-14 16:16:59,834 | INFO | Epoch   30 | Train Loss: 0.02414927 | Validation Loss: 0.02671046
+2026-09-14 16:17:10,322 | INFO | Epoch   40 | Train Loss: 0.02348061 | Validation Loss: 0.02689791
+2026-09-14 16:17:15,397 | INFO | Early stopping triggered at epoch 45. Best epoch: 25
+2026-09-14 16:17:15,398 | INFO | Restored best checkpoint from epoch 25.
+2026-09-14 16:17:15,492 | INFO | Final Validation R2: 0.0607
+2026-09-14 16:17:15,561 | INFO | Final Test Evaluation -> R2: 0.0468, Pearson: 0.2190
+2026-09-14 16:17:15,561 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 16:17:25,095 | INFO | CNN XAI whitelist importance computed (115 features).
+2026-09-14 16:17:25,161 | INFO | CNN experiment finished successfully.

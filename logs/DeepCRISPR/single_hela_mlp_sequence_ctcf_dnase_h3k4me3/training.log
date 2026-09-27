@@ -1,0 +1,23 @@
+2026-09-14 11:09:44,268 | INFO | Starting MLP experiment.
+2026-09-14 11:09:44,268 | INFO | Device: cuda
+2026-09-14 11:09:45,549 | INFO | Train shape: (5669, 184), Test shape: (1217, 184), Input dim: 184
+2026-09-14 11:09:45,944 | INFO | Epoch    1 | Train Loss: 0.03910717 | Validation Loss: 0.03170627
+2026-09-14 11:09:46,252 | INFO | Epoch    3 | Train Loss: 0.03209934 | Validation Loss: 0.02988540
+2026-09-14 11:09:46,400 | INFO | Epoch    4 | Train Loss: 0.03058092 | Validation Loss: 0.02984758
+2026-09-14 11:09:46,941 | INFO | Epoch    7 | Train Loss: 0.03025880 | Validation Loss: 0.02944766
+2026-09-14 11:09:47,329 | INFO | Epoch    9 | Train Loss: 0.02947382 | Validation Loss: 0.02921823
+2026-09-14 11:09:47,520 | INFO | Epoch   10 | Train Loss: 0.02953300 | Validation Loss: 0.03035798
+2026-09-14 11:09:48,284 | INFO | Epoch   14 | Train Loss: 0.02826639 | Validation Loss: 0.02908545
+2026-09-14 11:09:48,665 | INFO | Epoch   16 | Train Loss: 0.02777624 | Validation Loss: 0.02906908
+2026-09-14 11:09:48,863 | INFO | Epoch   17 | Train Loss: 0.02784996 | Validation Loss: 0.02905694
+2026-09-14 11:09:49,432 | INFO | Epoch   20 | Train Loss: 0.02724993 | Validation Loss: 0.02961738
+2026-09-14 11:09:50,645 | INFO | Epoch   26 | Train Loss: 0.02609096 | Validation Loss: 0.02901493
+2026-09-14 11:09:52,025 | INFO | Epoch   30 | Train Loss: 0.02527506 | Validation Loss: 0.03072025
+2026-09-14 11:09:55,063 | INFO | Epoch   40 | Train Loss: 0.02354620 | Validation Loss: 0.03080048
+2026-09-14 11:09:56,890 | INFO | Early stopping triggered at epoch 46. Best epoch: 26
+2026-09-14 11:09:56,891 | INFO | Restored best checkpoint from epoch 26.
+2026-09-14 11:09:56,913 | INFO | Final Validation R2: 0.1259
+2026-09-14 11:09:56,916 | INFO | Final Test Evaluation -> R2: 0.0790, Pearson: 0.3006
+2026-09-14 11:09:56,916 | INFO | Computing Integrated Gradients whitelist importance...
+2026-09-14 11:09:58,234 | INFO | MLP XAI whitelist importance computed (184 features).
+2026-09-14 11:09:58,269 | INFO | MLP experiment finished successfully.

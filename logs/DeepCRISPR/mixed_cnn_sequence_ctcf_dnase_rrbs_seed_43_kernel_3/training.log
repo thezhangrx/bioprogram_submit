@@ -1,0 +1,24 @@
+2026-09-14 20:11:42,160 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 20:11:42,175 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'RRBS']
+2026-09-14 20:11:45,208 | INFO | Epoch    1 | Train Loss: 0.03118407 | Validation Loss: 0.02472671
+2026-09-14 20:11:46,095 | INFO | Epoch    2 | Train Loss: 0.02836544 | Validation Loss: 0.02454607
+2026-09-14 20:11:47,111 | INFO | Epoch    3 | Train Loss: 0.02767293 | Validation Loss: 0.02442419
+2026-09-14 20:11:48,188 | INFO | Epoch    4 | Train Loss: 0.02730308 | Validation Loss: 0.02433498
+2026-09-14 20:11:49,883 | INFO | Epoch    5 | Train Loss: 0.02673063 | Validation Loss: 0.02388892
+2026-09-14 20:11:51,821 | INFO | Epoch    7 | Train Loss: 0.02630503 | Validation Loss: 0.02385655
+2026-09-14 20:11:52,621 | INFO | Epoch    8 | Train Loss: 0.02588456 | Validation Loss: 0.02367824
+2026-09-14 20:11:54,614 | INFO | Epoch   10 | Train Loss: 0.02590455 | Validation Loss: 0.02410102
+2026-09-14 20:11:56,105 | INFO | Epoch   11 | Train Loss: 0.02564245 | Validation Loss: 0.02366829
+2026-09-14 20:11:59,262 | INFO | Epoch   14 | Train Loss: 0.02540136 | Validation Loss: 0.02362559
+2026-09-14 20:12:04,993 | INFO | Epoch   18 | Train Loss: 0.02504425 | Validation Loss: 0.02351584
+2026-09-14 20:12:08,199 | INFO | Epoch   20 | Train Loss: 0.02492565 | Validation Loss: 0.02523387
+2026-09-14 20:12:13,902 | INFO | Epoch   25 | Train Loss: 0.02476310 | Validation Loss: 0.02350601
+2026-09-14 20:12:20,312 | INFO | Epoch   30 | Train Loss: 0.02433164 | Validation Loss: 0.02376888
+2026-09-14 20:12:31,747 | INFO | Epoch   40 | Train Loss: 0.02379818 | Validation Loss: 0.02431594
+2026-09-14 20:12:39,164 | INFO | Early stopping triggered at epoch 45. Best epoch: 25
+2026-09-14 20:12:39,166 | INFO | Restored best checkpoint from epoch 25.
+2026-09-14 20:12:39,240 | INFO | Final Validation R2: 0.0627
+2026-09-14 20:12:39,301 | INFO | Final Test Evaluation -> R2: 0.0412, Pearson: 0.2182
+2026-09-14 20:12:39,301 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 20:12:50,325 | INFO | CNN XAI whitelist importance computed (161 features).
+2026-09-14 20:12:50,368 | INFO | CNN experiment finished successfully.

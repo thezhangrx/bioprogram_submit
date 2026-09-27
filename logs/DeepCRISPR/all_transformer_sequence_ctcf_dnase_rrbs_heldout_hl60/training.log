@@ -1,0 +1,24 @@
+2026-09-14 14:08:58,792 | INFO | Starting Transformer experiment.
+2026-09-14 14:08:58,792 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 14:09:03,320 | INFO | Epoch    1 | Train Loss: 0.03186091 | Validation Loss: 0.02977906
+2026-09-14 14:09:05,383 | INFO | Epoch    2 | Train Loss: 0.02912354 | Validation Loss: 0.02945371
+2026-09-14 14:09:08,636 | INFO | Epoch    4 | Train Loss: 0.02784375 | Validation Loss: 0.02823889
+2026-09-14 14:09:14,019 | INFO | Epoch    7 | Train Loss: 0.02703913 | Validation Loss: 0.02786767
+2026-09-14 14:09:17,754 | INFO | Epoch    9 | Train Loss: 0.02677684 | Validation Loss: 0.02785659
+2026-09-14 14:09:19,538 | INFO | Epoch   10 | Train Loss: 0.02655040 | Validation Loss: 0.02850446
+2026-09-14 14:09:21,550 | INFO | Epoch   11 | Train Loss: 0.02651736 | Validation Loss: 0.02778830
+2026-09-14 14:09:28,568 | INFO | Epoch   15 | Train Loss: 0.02612543 | Validation Loss: 0.02770000
+2026-09-14 14:09:30,684 | INFO | Epoch   16 | Train Loss: 0.02607982 | Validation Loss: 0.02753727
+2026-09-14 14:09:36,463 | INFO | Epoch   19 | Train Loss: 0.02578960 | Validation Loss: 0.02736347
+2026-09-14 14:09:37,960 | INFO | Epoch   20 | Train Loss: 0.02567165 | Validation Loss: 0.02768923
+2026-09-14 14:09:56,769 | INFO | Epoch   30 | Train Loss: 0.02501213 | Validation Loss: 0.02760175
+2026-09-14 14:09:58,380 | INFO | Epoch   31 | Train Loss: 0.02489337 | Validation Loss: 0.02730367
+2026-09-14 14:10:12,769 | INFO | Epoch   40 | Train Loss: 0.02415851 | Validation Loss: 0.02792638
+2026-09-14 14:10:30,631 | INFO | Epoch   50 | Train Loss: 0.02347964 | Validation Loss: 0.02789310
+2026-09-14 14:10:32,469 | INFO | Early stopping triggered at epoch 51. Best epoch: 31
+2026-09-14 14:10:32,470 | INFO | Restored best checkpoint from epoch 31.
+2026-09-14 14:10:32,533 | INFO | Final Validation R2: 0.0843
+2026-09-14 14:10:32,594 | INFO | Final Test Evaluation -> R2: -0.0544, Pearson: 0.1495
+2026-09-14 14:10:32,594 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 14:10:32,680 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 14:10:32,760 | INFO | Transformer experiment finished successfully.

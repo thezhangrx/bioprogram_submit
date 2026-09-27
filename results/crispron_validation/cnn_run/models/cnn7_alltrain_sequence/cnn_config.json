@@ -1,0 +1,43 @@
+{
+    "dataset": "DeepCRISPR",
+    "run_name": "cnn7_alltrain_sequence",
+    "model": "cnn_dual_branch",
+    "split_type": "all_train",
+    "cell_line": "all",
+    "cell_lines": [
+        "hct116",
+        "hek293t",
+        "hela",
+        "hl60"
+    ],
+    "environment": "sequence",
+    "combination": "sequence",
+    "selected_environments": [],
+    "environment_count": 0,
+    "sequence_channels": 4,
+    "channel_count": 8,
+    "channel_names": [
+        "A",
+        "C",
+        "G",
+        "T",
+        "CTCF",
+        "Dnase",
+        "H3K4me3",
+        "RRBS"
+    ],
+    "sequence_length": 23,
+    "sequence_kernel": 7,
+    "environment_kernel": 3,
+    "random_seed": 42,
+    "n_train": 16749,
+    "n_test": 16749,
+    "train_equals_test": true,
+    "note": "全部数据既作训练又作评估（无留出），预测为 in-sample",
+    "environment_channels": 0,
+    "best_epoch": 100,
+    "best_validation_loss": Infinity,
+    "device_resolved": "cpu",
+    "torch_version": "2.13.0+cu130",
+    "torch_cuda_build": "13.0"
+}

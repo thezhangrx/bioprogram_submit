@@ -1,0 +1,23 @@
+2026-09-14 21:14:45,956 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 21:14:45,961 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 21:14:47,896 | INFO | Epoch    1 | Train Loss: 0.03198515 | Validation Loss: 0.02551148
+2026-09-14 21:14:48,027 | INFO | Epoch    2 | Train Loss: 0.01706070 | Validation Loss: 0.01567077
+2026-09-14 21:14:48,286 | INFO | Epoch    4 | Train Loss: 0.01636934 | Validation Loss: 0.01533807
+2026-09-14 21:14:48,886 | INFO | Epoch    8 | Train Loss: 0.01538991 | Validation Loss: 0.01526191
+2026-09-14 21:14:49,038 | INFO | Epoch    9 | Train Loss: 0.01470684 | Validation Loss: 0.01520058
+2026-09-14 21:14:49,182 | INFO | Epoch   10 | Train Loss: 0.01441673 | Validation Loss: 0.01671982
+2026-09-14 21:14:49,967 | INFO | Epoch   14 | Train Loss: 0.01373477 | Validation Loss: 0.01513128
+2026-09-14 21:14:50,914 | INFO | Epoch   18 | Train Loss: 0.01342826 | Validation Loss: 0.01485757
+2026-09-14 21:14:51,287 | INFO | Epoch   20 | Train Loss: 0.01353542 | Validation Loss: 0.01497282
+2026-09-14 21:14:51,431 | INFO | Epoch   21 | Train Loss: 0.01324955 | Validation Loss: 0.01471731
+2026-09-14 21:14:52,555 | INFO | Epoch   30 | Train Loss: 0.01286281 | Validation Loss: 0.01710861
+2026-09-14 21:14:54,249 | INFO | Epoch   38 | Train Loss: 0.01157304 | Validation Loss: 0.01459034
+2026-09-14 21:14:54,763 | INFO | Epoch   40 | Train Loss: 0.01101878 | Validation Loss: 0.01515048
+2026-09-14 21:14:56,923 | INFO | Epoch   50 | Train Loss: 0.01011812 | Validation Loss: 0.01517925
+2026-09-14 21:14:58,173 | INFO | Early stopping triggered at epoch 58. Best epoch: 38
+2026-09-14 21:14:58,174 | INFO | Restored best checkpoint from epoch 38.
+2026-09-14 21:14:58,200 | INFO | Final Validation R2: 0.0740
+2026-09-14 21:14:58,213 | INFO | Final Test Evaluation -> R2: 0.0623, Pearson: 0.2660
+2026-09-14 21:14:58,214 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 21:14:59,827 | INFO | CNN XAI whitelist importance computed (184 features).
+2026-09-14 21:14:59,853 | INFO | CNN experiment finished successfully.

@@ -1,0 +1,22 @@
+2026-09-14 12:27:32,487 | INFO | Starting Transformer experiment.
+2026-09-14 12:27:32,488 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 12:27:36,636 | INFO | Epoch    1 | Train Loss: 0.03107399 | Validation Loss: 0.02995291
+2026-09-14 12:27:38,606 | INFO | Epoch    2 | Train Loss: 0.02908186 | Validation Loss: 0.02986511
+2026-09-14 12:27:41,701 | INFO | Epoch    4 | Train Loss: 0.02778552 | Validation Loss: 0.02824545
+2026-09-14 12:27:48,192 | INFO | Epoch    7 | Train Loss: 0.02692277 | Validation Loss: 0.02780812
+2026-09-14 12:27:50,650 | INFO | Epoch    8 | Train Loss: 0.02673194 | Validation Loss: 0.02778857
+2026-09-14 12:27:55,041 | INFO | Epoch   10 | Train Loss: 0.02648462 | Validation Loss: 0.02806542
+2026-09-14 12:28:03,173 | INFO | Epoch   15 | Train Loss: 0.02602290 | Validation Loss: 0.02775821
+2026-09-14 12:28:10,832 | INFO | Epoch   20 | Train Loss: 0.02555384 | Validation Loss: 0.02759582
+2026-09-14 12:28:12,604 | INFO | Epoch   21 | Train Loss: 0.02549385 | Validation Loss: 0.02754382
+2026-09-14 12:28:26,418 | INFO | Epoch   30 | Train Loss: 0.02475249 | Validation Loss: 0.02844409
+2026-09-14 12:28:38,000 | INFO | Epoch   37 | Train Loss: 0.02432809 | Validation Loss: 0.02727471
+2026-09-14 12:28:43,415 | INFO | Epoch   40 | Train Loss: 0.02404306 | Validation Loss: 0.02834638
+2026-09-14 12:29:02,407 | INFO | Epoch   50 | Train Loss: 0.02338958 | Validation Loss: 0.02839472
+2026-09-14 12:29:15,172 | INFO | Early stopping triggered at epoch 57. Best epoch: 37
+2026-09-14 12:29:15,174 | INFO | Restored best checkpoint from epoch 37.
+2026-09-14 12:29:15,250 | INFO | Final Validation R2: 0.0852
+2026-09-14 12:29:15,309 | INFO | Final Test Evaluation -> R2: -0.1088, Pearson: 0.0568
+2026-09-14 12:29:15,309 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 12:29:15,377 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 12:29:15,412 | INFO | Transformer experiment finished successfully.

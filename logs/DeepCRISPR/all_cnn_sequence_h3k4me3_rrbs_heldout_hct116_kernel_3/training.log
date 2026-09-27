@@ -1,0 +1,23 @@
+2026-09-14 19:02:42,712 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 19:02:42,724 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'H3K4me3', 'RRBS']
+2026-09-14 19:02:45,736 | INFO | Epoch    1 | Train Loss: 0.03094904 | Validation Loss: 0.02650198
+2026-09-14 19:02:47,682 | INFO | Epoch    3 | Train Loss: 0.02691673 | Validation Loss: 0.02612105
+2026-09-14 19:02:49,461 | INFO | Epoch    5 | Train Loss: 0.02678014 | Validation Loss: 0.02605544
+2026-09-14 19:02:50,744 | INFO | Epoch    7 | Train Loss: 0.02609055 | Validation Loss: 0.02587604
+2026-09-14 19:02:52,390 | INFO | Epoch   10 | Train Loss: 0.02554783 | Validation Loss: 0.02640621
+2026-09-14 19:02:55,036 | INFO | Epoch   13 | Train Loss: 0.02523685 | Validation Loss: 0.02575361
+2026-09-14 19:02:55,795 | INFO | Epoch   14 | Train Loss: 0.02535007 | Validation Loss: 0.02572614
+2026-09-14 19:02:57,240 | INFO | Epoch   16 | Train Loss: 0.02485939 | Validation Loss: 0.02565475
+2026-09-14 19:02:59,650 | INFO | Epoch   20 | Train Loss: 0.02476421 | Validation Loss: 0.02582458
+2026-09-14 19:03:00,397 | INFO | Epoch   21 | Train Loss: 0.02475869 | Validation Loss: 0.02564731
+2026-09-14 19:03:01,034 | INFO | Epoch   22 | Train Loss: 0.02447122 | Validation Loss: 0.02563699
+2026-09-14 19:03:04,571 | INFO | Epoch   28 | Train Loss: 0.02421515 | Validation Loss: 0.02555479
+2026-09-14 19:03:05,622 | INFO | Epoch   30 | Train Loss: 0.02416625 | Validation Loss: 0.02594191
+2026-09-14 19:03:11,482 | INFO | Epoch   40 | Train Loss: 0.02337993 | Validation Loss: 0.02594737
+2026-09-14 19:03:18,096 | INFO | Early stopping triggered at epoch 48. Best epoch: 28
+2026-09-14 19:03:18,099 | INFO | Restored best checkpoint from epoch 28.
+2026-09-14 19:03:18,136 | INFO | Final Validation R2: 0.0371
+2026-09-14 19:03:18,254 | INFO | Final Test Evaluation -> R2: 0.0437, Pearson: 0.2148
+2026-09-14 19:03:18,254 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 19:03:37,552 | INFO | CNN XAI whitelist importance computed (138 features).
+2026-09-14 19:03:37,660 | INFO | CNN experiment finished successfully.

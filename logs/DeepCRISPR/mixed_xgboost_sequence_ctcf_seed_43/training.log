@@ -1,0 +1,6 @@
+2026-09-14 10:24:41,363 | INFO | Starting XGBoost experiment.
+2026-09-14 10:24:42,132 | INFO | Model fitting completed. Best iteration: 135
+2026-09-14 10:24:42,136 | INFO | Validation R2: 0.1013
+2026-09-14 10:24:42,139 | INFO | Test Evaluation -> R2: 0.0995, Pearson: 0.3155
+2026-09-14 10:24:42,139 | INFO | Computing TreeSHAP SNR feature importance (whitelist)...
+2026-09-14 10:24:42,224 | INFO | XGBoost experiment finished.

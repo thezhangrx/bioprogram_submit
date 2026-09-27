@@ -1,0 +1,22 @@
+2026-09-14 18:27:31,110 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 18:27:31,119 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'Dnase', 'H3K4me3']
+2026-09-14 18:27:34,475 | INFO | Epoch    1 | Train Loss: 0.02890721 | Validation Loss: 0.02765990
+2026-09-14 18:27:36,081 | INFO | Epoch    2 | Train Loss: 0.02702364 | Validation Loss: 0.02660619
+2026-09-14 18:27:37,704 | INFO | Epoch    3 | Train Loss: 0.02655242 | Validation Loss: 0.02635199
+2026-09-14 18:27:39,344 | INFO | Epoch    4 | Train Loss: 0.02605462 | Validation Loss: 0.02621993
+2026-09-14 18:27:40,756 | INFO | Epoch    5 | Train Loss: 0.02595885 | Validation Loss: 0.02611631
+2026-09-14 18:27:42,688 | INFO | Epoch    7 | Train Loss: 0.02562000 | Validation Loss: 0.02590879
+2026-09-14 18:27:44,591 | INFO | Epoch    9 | Train Loss: 0.02536053 | Validation Loss: 0.02582036
+2026-09-14 18:27:45,661 | INFO | Epoch   10 | Train Loss: 0.02519889 | Validation Loss: 0.02571249
+2026-09-14 18:27:52,233 | INFO | Epoch   16 | Train Loss: 0.02470669 | Validation Loss: 0.02560286
+2026-09-14 18:27:56,988 | INFO | Epoch   20 | Train Loss: 0.02435153 | Validation Loss: 0.02566382
+2026-09-14 18:27:59,429 | INFO | Epoch   23 | Train Loss: 0.02409658 | Validation Loss: 0.02555943
+2026-09-14 18:28:06,406 | INFO | Epoch   30 | Train Loss: 0.02374353 | Validation Loss: 0.02608138
+2026-09-14 18:28:19,183 | INFO | Epoch   40 | Train Loss: 0.02321205 | Validation Loss: 0.02662635
+2026-09-14 18:28:22,647 | INFO | Early stopping triggered at epoch 43. Best epoch: 23
+2026-09-14 18:28:22,648 | INFO | Restored best checkpoint from epoch 23.
+2026-09-14 18:28:22,713 | INFO | Final Validation R2: 0.0519
+2026-09-14 18:28:22,785 | INFO | Final Test Evaluation -> R2: 0.0249, Pearson: 0.1849
+2026-09-14 18:28:22,785 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 18:28:31,858 | INFO | CNN XAI whitelist importance computed (138 features).
+2026-09-14 18:28:31,910 | INFO | CNN experiment finished successfully.

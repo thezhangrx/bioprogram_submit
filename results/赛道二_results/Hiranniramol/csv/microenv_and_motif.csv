@@ -1,0 +1,5 @@
+﻿feature_type,feature_name,supporting_celllines,supporting_splits,n_supporting,n_total_celllines,cellline_ratio,cellline_ratio_pass,mean_effect,effect_variance,effect_by_cellline,statistical_summary,source_files,generated_time
+motif,AGGG,hiranniramol,hiranniramol:single,1,1,1.0,True,0.18260189519578854,,hiranniramol=0.182602,hiranniramol: FDR=1.073e-06,csv/<cell_line>_microenv.csv;csv/<cell_line>_motif.csv,2026-09-26T17:35:06Z
+motif,GAGG,hiranniramol,hiranniramol:single,1,1,1.0,True,0.24542990437850692,,hiranniramol=0.245430,hiranniramol: FDR=4.557e-14,csv/<cell_line>_microenv.csv;csv/<cell_line>_motif.csv,2026-09-26T17:35:06Z
+motif,GCGG,hiranniramol,hiranniramol:single,1,1,1.0,True,0.2642094584438214,,hiranniramol=0.264209,hiranniramol: FDR=8.04e-07,csv/<cell_line>_microenv.csv;csv/<cell_line>_motif.csv,2026-09-26T17:35:06Z
+motif,GGGG,hiranniramol,hiranniramol:single,1,1,1.0,True,0.2609675577188318,,hiranniramol=0.260968,hiranniramol: FDR=1.96e-06,csv/<cell_line>_microenv.csv;csv/<cell_line>_motif.csv,2026-09-26T17:35:06Z

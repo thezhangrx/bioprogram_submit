@@ -1,0 +1,22 @@
+2026-09-14 21:18:01,772 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 21:18:01,781 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 21:18:05,009 | INFO | Epoch    1 | Train Loss: 0.03305487 | Validation Loss: 0.02651476
+2026-09-14 21:18:07,866 | INFO | Epoch    4 | Train Loss: 0.02723671 | Validation Loss: 0.02585928
+2026-09-14 21:18:11,038 | INFO | Epoch    9 | Train Loss: 0.02607661 | Validation Loss: 0.02568968
+2026-09-14 21:18:11,731 | INFO | Epoch   10 | Train Loss: 0.02552729 | Validation Loss: 0.02640615
+2026-09-14 21:18:13,583 | INFO | Epoch   12 | Train Loss: 0.02523221 | Validation Loss: 0.02552985
+2026-09-14 21:18:14,656 | INFO | Epoch   13 | Train Loss: 0.02527252 | Validation Loss: 0.02548669
+2026-09-14 21:18:17,106 | INFO | Epoch   16 | Train Loss: 0.02495039 | Validation Loss: 0.02546149
+2026-09-14 21:18:17,831 | INFO | Epoch   17 | Train Loss: 0.02482254 | Validation Loss: 0.02541585
+2026-09-14 21:18:19,873 | INFO | Epoch   20 | Train Loss: 0.02467236 | Validation Loss: 0.02564182
+2026-09-14 21:18:29,687 | INFO | Epoch   30 | Train Loss: 0.02379597 | Validation Loss: 0.02581084
+2026-09-14 21:18:30,708 | INFO | Epoch   31 | Train Loss: 0.02394877 | Validation Loss: 0.02532690
+2026-09-14 21:18:37,553 | INFO | Epoch   40 | Train Loss: 0.02334180 | Validation Loss: 0.02561799
+2026-09-14 21:18:47,036 | INFO | Epoch   50 | Train Loss: 0.02306702 | Validation Loss: 0.02622156
+2026-09-14 21:18:48,103 | INFO | Early stopping triggered at epoch 51. Best epoch: 31
+2026-09-14 21:18:48,106 | INFO | Restored best checkpoint from epoch 31.
+2026-09-14 21:18:48,157 | INFO | Final Validation R2: 0.0457
+2026-09-14 21:18:48,294 | INFO | Final Test Evaluation -> R2: 0.0458, Pearson: 0.2185
+2026-09-14 21:18:48,294 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 21:19:07,202 | INFO | CNN XAI whitelist importance computed (184 features).
+2026-09-14 21:19:07,268 | INFO | CNN experiment finished successfully.

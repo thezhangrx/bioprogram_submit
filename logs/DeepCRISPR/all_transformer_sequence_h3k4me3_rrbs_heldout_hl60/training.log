@@ -1,0 +1,19 @@
+2026-09-14 13:44:39,558 | INFO | Starting Transformer experiment.
+2026-09-14 13:44:39,559 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 13:44:44,630 | INFO | Epoch    1 | Train Loss: 0.03096148 | Validation Loss: 0.02992027
+2026-09-14 13:44:45,959 | INFO | Epoch    2 | Train Loss: 0.02888204 | Validation Loss: 0.02944820
+2026-09-14 13:44:48,982 | INFO | Epoch    4 | Train Loss: 0.02770817 | Validation Loss: 0.02822167
+2026-09-14 13:44:53,984 | INFO | Epoch    7 | Train Loss: 0.02697538 | Validation Loss: 0.02786375
+2026-09-14 13:44:55,863 | INFO | Epoch    8 | Train Loss: 0.02668614 | Validation Loss: 0.02769057
+2026-09-14 13:44:58,750 | INFO | Epoch   10 | Train Loss: 0.02647582 | Validation Loss: 0.02824166
+2026-09-14 13:45:17,888 | INFO | Epoch   20 | Train Loss: 0.02553269 | Validation Loss: 0.02759670
+2026-09-14 13:45:19,331 | INFO | Epoch   21 | Train Loss: 0.02543663 | Validation Loss: 0.02745624
+2026-09-14 13:45:36,397 | INFO | Epoch   30 | Train Loss: 0.02481174 | Validation Loss: 0.02810713
+2026-09-14 13:45:54,578 | INFO | Epoch   40 | Train Loss: 0.02378860 | Validation Loss: 0.02856989
+2026-09-14 13:45:57,223 | INFO | Early stopping triggered at epoch 41. Best epoch: 21
+2026-09-14 13:45:57,225 | INFO | Restored best checkpoint from epoch 21.
+2026-09-14 13:45:57,304 | INFO | Final Validation R2: 0.0791
+2026-09-14 13:45:57,370 | INFO | Final Test Evaluation -> R2: -0.0183, Pearson: 0.1607
+2026-09-14 13:45:57,371 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 13:45:57,402 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 13:45:57,459 | INFO | Transformer experiment finished successfully.

@@ -1,0 +1,22 @@
+2026-09-14 17:46:27,118 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 17:46:27,124 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'RRBS']
+2026-09-14 17:46:30,489 | INFO | Epoch    1 | Train Loss: 0.03073761 | Validation Loss: 0.02620444
+2026-09-14 17:46:31,953 | INFO | Epoch    3 | Train Loss: 0.02687930 | Validation Loss: 0.02597333
+2026-09-14 17:46:34,079 | INFO | Epoch    7 | Train Loss: 0.02592559 | Validation Loss: 0.02585514
+2026-09-14 17:46:35,764 | INFO | Epoch    9 | Train Loss: 0.02571117 | Validation Loss: 0.02561852
+2026-09-14 17:46:36,405 | INFO | Epoch   10 | Train Loss: 0.02559180 | Validation Loss: 0.02618552
+2026-09-14 17:46:38,998 | INFO | Epoch   13 | Train Loss: 0.02515549 | Validation Loss: 0.02554247
+2026-09-14 17:46:39,996 | INFO | Epoch   14 | Train Loss: 0.02518434 | Validation Loss: 0.02553777
+2026-09-14 17:46:41,534 | INFO | Epoch   16 | Train Loss: 0.02484043 | Validation Loss: 0.02551700
+2026-09-14 17:46:44,253 | INFO | Epoch   20 | Train Loss: 0.02464806 | Validation Loss: 0.02572302
+2026-09-14 17:46:47,903 | INFO | Epoch   25 | Train Loss: 0.02412226 | Validation Loss: 0.02542887
+2026-09-14 17:46:50,883 | INFO | Epoch   28 | Train Loss: 0.02403653 | Validation Loss: 0.02538884
+2026-09-14 17:46:52,857 | INFO | Epoch   30 | Train Loss: 0.02397696 | Validation Loss: 0.02570078
+2026-09-14 17:46:59,826 | INFO | Epoch   40 | Train Loss: 0.02322658 | Validation Loss: 0.02569244
+2026-09-14 17:47:05,013 | INFO | Early stopping triggered at epoch 48. Best epoch: 28
+2026-09-14 17:47:05,015 | INFO | Restored best checkpoint from epoch 28.
+2026-09-14 17:47:05,048 | INFO | Final Validation R2: 0.0433
+2026-09-14 17:47:05,172 | INFO | Final Test Evaluation -> R2: 0.0425, Pearson: 0.2125
+2026-09-14 17:47:05,172 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 17:47:20,810 | INFO | CNN XAI whitelist importance computed (138 features).
+2026-09-14 17:47:20,857 | INFO | CNN experiment finished successfully.

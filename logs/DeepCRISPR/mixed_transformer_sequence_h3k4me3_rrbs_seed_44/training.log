@@ -1,0 +1,22 @@
+2026-09-14 13:48:41,325 | INFO | Starting Transformer experiment.
+2026-09-14 13:48:41,325 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 13:48:44,934 | INFO | Epoch    1 | Train Loss: 0.03125694 | Validation Loss: 0.02685054
+2026-09-14 13:48:46,218 | INFO | Epoch    2 | Train Loss: 0.02814338 | Validation Loss: 0.02613217
+2026-09-14 13:48:48,843 | INFO | Epoch    3 | Train Loss: 0.02710816 | Validation Loss: 0.02592153
+2026-09-14 13:48:51,453 | INFO | Epoch    5 | Train Loss: 0.02622825 | Validation Loss: 0.02567995
+2026-09-14 13:48:53,134 | INFO | Epoch    6 | Train Loss: 0.02604279 | Validation Loss: 0.02548756
+2026-09-14 13:48:58,058 | INFO | Epoch    9 | Train Loss: 0.02554854 | Validation Loss: 0.02536166
+2026-09-14 13:48:59,992 | INFO | Epoch   10 | Train Loss: 0.02533449 | Validation Loss: 0.02591311
+2026-09-14 13:49:01,219 | INFO | Epoch   11 | Train Loss: 0.02531264 | Validation Loss: 0.02523576
+2026-09-14 13:49:10,616 | INFO | Epoch   17 | Train Loss: 0.02452091 | Validation Loss: 0.02516441
+2026-09-14 13:49:16,101 | INFO | Epoch   20 | Train Loss: 0.02451023 | Validation Loss: 0.02516863
+2026-09-14 13:49:32,540 | INFO | Epoch   29 | Train Loss: 0.02364168 | Validation Loss: 0.02495154
+2026-09-14 13:49:34,021 | INFO | Epoch   30 | Train Loss: 0.02355669 | Validation Loss: 0.02658581
+2026-09-14 13:49:50,377 | INFO | Epoch   40 | Train Loss: 0.02289802 | Validation Loss: 0.02623500
+2026-09-14 13:50:03,391 | INFO | Early stopping triggered at epoch 49. Best epoch: 29
+2026-09-14 13:50:03,393 | INFO | Restored best checkpoint from epoch 29.
+2026-09-14 13:50:03,464 | INFO | Final Validation R2: 0.0744
+2026-09-14 13:50:03,534 | INFO | Final Test Evaluation -> R2: 0.0628, Pearson: 0.2624
+2026-09-14 13:50:03,534 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 13:50:03,600 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 13:50:03,677 | INFO | Transformer experiment finished successfully.

@@ -1,0 +1,19 @@
+2026-09-14 16:27:32,541 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 16:27:32,543 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'RRBS']
+2026-09-14 16:27:35,876 | INFO | Epoch    1 | Train Loss: 0.03091550 | Validation Loss: 0.02827123
+2026-09-14 16:27:36,339 | INFO | Epoch    3 | Train Loss: 0.02835141 | Validation Loss: 0.02738138
+2026-09-14 16:27:36,673 | INFO | Epoch    4 | Train Loss: 0.02771555 | Validation Loss: 0.02716076
+2026-09-14 16:27:36,929 | INFO | Epoch    5 | Train Loss: 0.02671740 | Validation Loss: 0.02644327
+2026-09-14 16:27:37,230 | INFO | Epoch    6 | Train Loss: 0.02584391 | Validation Loss: 0.02627048
+2026-09-14 16:27:38,467 | INFO | Epoch    9 | Train Loss: 0.02445674 | Validation Loss: 0.02617292
+2026-09-14 16:27:39,143 | INFO | Epoch   10 | Train Loss: 0.02336960 | Validation Loss: 0.02811588
+2026-09-14 16:27:40,021 | INFO | Epoch   12 | Train Loss: 0.02211733 | Validation Loss: 0.02591984
+2026-09-14 16:27:43,397 | INFO | Epoch   20 | Train Loss: 0.01837996 | Validation Loss: 0.02737760
+2026-09-14 16:27:47,729 | INFO | Epoch   30 | Train Loss: 0.01357845 | Validation Loss: 0.02955340
+2026-09-14 16:27:48,416 | INFO | Early stopping triggered at epoch 32. Best epoch: 12
+2026-09-14 16:27:48,418 | INFO | Restored best checkpoint from epoch 12.
+2026-09-14 16:27:48,440 | INFO | Final Validation R2: 0.1109
+2026-09-14 16:27:48,462 | INFO | Final Test Evaluation -> R2: 0.0968, Pearson: 0.3308
+2026-09-14 16:27:48,462 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 16:27:52,023 | INFO | CNN XAI whitelist importance computed (115 features).
+2026-09-14 16:27:52,082 | INFO | CNN experiment finished successfully.

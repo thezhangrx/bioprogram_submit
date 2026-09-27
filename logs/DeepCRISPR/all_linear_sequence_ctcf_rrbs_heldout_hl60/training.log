@@ -1,0 +1,9 @@
+2026-09-14 10:20:55,770 | INFO | Starting Linear Regression experiment.
+2026-09-14 10:20:55,780 | INFO | 已剔除 161 个 _T 参照特征 (T 为基准); 线性模型输入 -> 161 维
+2026-09-14 10:20:55,780 | INFO | Train shape: (12313, 161), Test shape: (2076, 161)
+2026-09-14 10:20:55,780 | INFO | Feature count: 161, Scaler: False
+2026-09-14 10:20:56,300 | INFO | Model fitting & statistical inference completed.
+2026-09-14 10:20:56,302 | INFO | Numerical rank: 109, Condition number: 2.46e+02
+2026-09-14 10:20:56,302 | INFO | Significantly contributing features (FDR < 0.05): 21 (FDR < 0.001: 10)
+2026-09-14 10:20:56,337 | INFO | Test Evaluation -> R2: 0.0278, Pearson: 0.2694, MAE: 0.0888
+2026-09-14 10:20:56,366 | INFO | Linear Regression experiment finished successfully.

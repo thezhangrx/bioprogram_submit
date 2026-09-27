@@ -1,0 +1,22 @@
+2026-09-14 13:42:47,286 | INFO | Starting Transformer experiment.
+2026-09-14 13:42:47,287 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase', 'H3K4me3', 'RRBS']
+2026-09-14 13:42:52,860 | INFO | Epoch    1 | Train Loss: 0.03123373 | Validation Loss: 0.03043817
+2026-09-14 13:42:54,715 | INFO | Epoch    2 | Train Loss: 0.02916087 | Validation Loss: 0.02959522
+2026-09-14 13:42:56,431 | INFO | Epoch    3 | Train Loss: 0.02787482 | Validation Loss: 0.02866092
+2026-09-14 13:42:59,980 | INFO | Epoch    5 | Train Loss: 0.02715825 | Validation Loss: 0.02767368
+2026-09-14 13:43:04,570 | INFO | Epoch    7 | Train Loss: 0.02662877 | Validation Loss: 0.02732394
+2026-09-14 13:43:09,343 | INFO | Epoch    9 | Train Loss: 0.02621485 | Validation Loss: 0.02693141
+2026-09-14 13:43:10,934 | INFO | Epoch   10 | Train Loss: 0.02595128 | Validation Loss: 0.02847419
+2026-09-14 13:43:15,595 | INFO | Epoch   13 | Train Loss: 0.02580435 | Validation Loss: 0.02679322
+2026-09-14 13:43:22,467 | INFO | Epoch   17 | Train Loss: 0.02538718 | Validation Loss: 0.02669804
+2026-09-14 13:43:25,422 | INFO | Epoch   18 | Train Loss: 0.02525290 | Validation Loss: 0.02654126
+2026-09-14 13:43:28,863 | INFO | Epoch   20 | Train Loss: 0.02509420 | Validation Loss: 0.02648233
+2026-09-14 13:43:48,188 | INFO | Epoch   30 | Train Loss: 0.02434603 | Validation Loss: 0.02696757
+2026-09-14 13:44:07,816 | INFO | Epoch   40 | Train Loss: 0.02345493 | Validation Loss: 0.02764209
+2026-09-14 13:44:07,817 | INFO | Early stopping triggered at epoch 40. Best epoch: 20
+2026-09-14 13:44:07,818 | INFO | Restored best checkpoint from epoch 20.
+2026-09-14 13:44:07,893 | INFO | Final Validation R2: 0.1374
+2026-09-14 13:44:07,977 | INFO | Final Test Evaluation -> R2: -0.5243, Pearson: -0.1724
+2026-09-14 13:44:07,977 | INFO | Computing Transformer Attention Entropy whitelist importance...
+2026-09-14 13:44:08,003 | INFO | Transformer XAI whitelist importance computed (184 rows).
+2026-09-14 13:44:08,052 | INFO | Transformer experiment finished successfully.

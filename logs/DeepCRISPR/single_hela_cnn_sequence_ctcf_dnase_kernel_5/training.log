@@ -1,0 +1,22 @@
+2026-09-14 16:54:18,721 | INFO | Starting dual-branch CNN experiment.
+2026-09-14 16:54:18,726 | INFO | Device: cuda, Channels: ['A', 'C', 'G', 'T', 'CTCF', 'Dnase']
+2026-09-14 16:54:22,183 | INFO | Epoch    1 | Train Loss: 0.03466839 | Validation Loss: 0.03223635
+2026-09-14 16:54:23,815 | INFO | Epoch    3 | Train Loss: 0.03113191 | Validation Loss: 0.03072238
+2026-09-14 16:54:24,424 | INFO | Epoch    4 | Train Loss: 0.03053156 | Validation Loss: 0.03051715
+2026-09-14 16:54:25,265 | INFO | Epoch    5 | Train Loss: 0.02975213 | Validation Loss: 0.03048789
+2026-09-14 16:54:25,890 | INFO | Epoch    6 | Train Loss: 0.02925057 | Validation Loss: 0.03014015
+2026-09-14 16:54:26,418 | INFO | Epoch    7 | Train Loss: 0.02881387 | Validation Loss: 0.03001088
+2026-09-14 16:54:26,932 | INFO | Epoch    8 | Train Loss: 0.02794867 | Validation Loss: 0.02943688
+2026-09-14 16:54:27,994 | INFO | Epoch   10 | Train Loss: 0.02714982 | Validation Loss: 0.03274878
+2026-09-14 16:54:28,544 | INFO | Epoch   11 | Train Loss: 0.02742347 | Validation Loss: 0.02927319
+2026-09-14 16:54:33,201 | INFO | Epoch   20 | Train Loss: 0.02408086 | Validation Loss: 0.03837882
+2026-09-14 16:54:33,945 | INFO | Epoch   21 | Train Loss: 0.02339010 | Validation Loss: 0.02867867
+2026-09-14 16:54:39,465 | INFO | Epoch   30 | Train Loss: 0.01880750 | Validation Loss: 0.03845966
+2026-09-14 16:54:45,701 | INFO | Epoch   40 | Train Loss: 0.01596920 | Validation Loss: 0.03565896
+2026-09-14 16:54:46,289 | INFO | Early stopping triggered at epoch 41. Best epoch: 21
+2026-09-14 16:54:46,290 | INFO | Restored best checkpoint from epoch 21.
+2026-09-14 16:54:46,326 | INFO | Final Validation R2: 0.1361
+2026-09-14 16:54:46,393 | INFO | Final Test Evaluation -> R2: 0.0776, Pearson: 0.3224
+2026-09-14 16:54:46,393 | INFO | Computing CNN In-Silico Mutagenesis (ISM) and Integrated Gradients...
+2026-09-14 16:54:50,725 | INFO | CNN XAI whitelist importance computed (138 features).
+2026-09-14 16:54:50,769 | INFO | CNN experiment finished successfully.
