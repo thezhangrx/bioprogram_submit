@@ -3,6 +3,8 @@
 > **参赛赛道**：赛道二 · AI 基因编辑与核酸工具设计
 > **公开数据库**：DeepCRISPR，Labuhn，Hiranniramol
 
+**项目地址**:：https://github.com/thezhangrx/bioprogram_submit
+
 **目录**
 
 - [项目一览](#项目一览)
@@ -75,8 +77,8 @@
 
 ## 1. 项目简介
 
-**核心挖掘目标**：微环境，序列motif，跨细胞泛化。
-**平台核心目的**: 项目在**预测 → 模型归因 → 统计检验 → 跨细胞系比较 → 证据整合 → 生物学假设** 过程中，整合不同特征输入方式所得训练结果，从而**对微环境重要性进行评估**,**提取可靠序列motif以设计更好gRNA**,**总结细胞微环境和序列motif特异性**，为科研人员进行进一步实验提供方向与依据。
+**核心挖掘目标**：微环境，motif，跨细胞系泛化。
+**平台核心目的**: 项目在**预测 → 模型归因 → 统计检验 → 跨细胞系比较 → 证据整合 → 生物学假设** 过程中，整合不同特征输入方式所得训练结果，从而**对微环境重要性进行评估**,**提取可靠motif以设计更好gRNA**,**总结细胞微环境和motif特异性**，为科研人员进行进一步实验提供方向与依据。
 
 
 **输入 / 输出**
@@ -87,7 +89,7 @@
 | **处理** | `core/`（特征工程 → 划分 → 模型 → 归因）、`workflows/`（训练 / 挖掘 / 预测 / 编排）、`analysis/`（汇总 → 统计 → 证据 → 报告 → 图） |
 | **输出** | `results/<batch>/<run>/`（逐 run 指标与预测）、`results/summary/<batch>/`（批次汇总、图、特征库）、`models/<batch>/<run>/`（权重）、`results/logs/<batch>/`（日志） |
 | **模型** | 线性回归 / XGBoost / MLP / 双分支 CNN（卷积核 3/5/7）/ Transformer，共 7 个配置 |
-| **分析目标** | 环境通道与序列motif的增量预测价值及跨细胞系泛化|
+| **分析目标** | 环境通道与motif的增量预测价值及跨细胞系泛化|
 
 **规模**：3 个数据集、5 类模型（7 配置）× 16 环境组合 × 3 种划分 = DeepCRISPR 上 1344 次受控实验。
 
@@ -890,7 +892,7 @@ python -m analysis.crispron_validation                          # 全流程（wi
 | `split_digest` | 划分摘要（sha256 前 16 位）= train/valid/test 的**序列集合 + 样本数**，不含任何路径，可核验"训练所用划分 == 分析所用划分" |
 | `audit_train_test_sequence_overlap` / `audit_train_test_revcomp_overlap` / `audit_train_test_locus_overlap` | 泄漏审计；group-aware 模式下**非零即抛错中止** |
 
-> 项目由于在超算平台上允许,一些字段无法复现。
+> 项目由于在超算平台上训练，一些字段无法复现。
 
 **身份类与泄漏防控**（`core/data/cell_line_division.py`）：
 
