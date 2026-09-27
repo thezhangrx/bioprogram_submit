@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "name": "Hiranniramol",
+  "description": "每个数据集一个自包含配置文件：数据集规格 + 特征映射 + 序列长度。人可直接编辑。",
+
+  "raw_dir": "data/raw/Hiranniramol",
+  "processed_dir": "data/processed/Hiranniramol",
+
+  "sequence_length": 23,
+  "protospacer_length": 20,
+
+  "has_environment": false,
+  "channel_count": 4,
+  "sequence_column": "gRNA",
+  "label_column": "Edit Efficiency",
+  "label_normalized": "yes",
+  "label_normalization": {
+    "method": "divide",
+    "divisor": 100.0,
+    "note": "原始为 0-100 百分制，除以 100 映射到 [0,1]。"
+  },
+  "label_scale": "原始为 0-100 百分制；适配器自动 /100 归一到 [0,1]",
+  "input_sequence_nt": 20,
+  "pam": "由 Extended Target 定位 gRNA 后取其后 3 nt（要求 GG）",
+  "cell_lines": ["hiranniramol"],
+  "raw_layout": "单文件：Hiranniramol.CSV（--format hiranniramol）",
+  "source": "Hiranniramol et al. 2020, Bioinformatics 36(9):2684-2689",
+  "notes": "无表观通道，只能参与纯序列实验；标签语义与 DeepCRISPR 不同，不可直接比较数值。",
+
+  "feature_config": {
+    "sequence_channels": [
+      "A",
+      "C",
+      "G",
+      "T"
+    ],
+    "environment_features": [],
+    "metadata_columns": [
+      "Cell line",
+      "Strand",
+      "sgRNA"
+    ]
+  }
+}

@@ -1,0 +1,407 @@
+{
+    "schema_version": 2,
+    "sequence_length": 23,
+    "sequence_channels": [
+        "A",
+        "C",
+        "G",
+        "T"
+    ],
+    "environment_features": [
+        {
+            "name": "CTCF",
+            "column": "CTCF",
+            "type": "per_position_binary",
+            "encoding": {
+                "A": 1,
+                "N": 0
+            },
+            "enabled": true
+        },
+        {
+            "name": "Dnase",
+            "column": "Dnase",
+            "type": "per_position_binary",
+            "encoding": {
+                "A": 1,
+                "N": 0
+            },
+            "enabled": true
+        },
+        {
+            "name": "H3K4me3",
+            "column": "H3K4me3",
+            "type": "per_position_binary",
+            "encoding": {
+                "A": 1,
+                "N": 0
+            },
+            "enabled": true
+        },
+        {
+            "name": "RRBS",
+            "column": "RRBS",
+            "type": "per_position_binary",
+            "encoding": {
+                "A": 1,
+                "N": 0
+            },
+            "enabled": true
+        }
+    ],
+    "channel_count": 8,
+    "feature_count": 184,
+    "channel_names": [
+        "A",
+        "C",
+        "G",
+        "T",
+        "CTCF",
+        "Dnase",
+        "H3K4me3",
+        "RRBS"
+    ],
+    "feature_names": [
+        "pos1_A",
+        "pos1_C",
+        "pos1_G",
+        "pos1_T",
+        "pos1_CTCF",
+        "pos1_Dnase",
+        "pos1_H3K4me3",
+        "pos1_RRBS",
+        "pos2_A",
+        "pos2_C",
+        "pos2_G",
+        "pos2_T",
+        "pos2_CTCF",
+        "pos2_Dnase",
+        "pos2_H3K4me3",
+        "pos2_RRBS",
+        "pos3_A",
+        "pos3_C",
+        "pos3_G",
+        "pos3_T",
+        "pos3_CTCF",
+        "pos3_Dnase",
+        "pos3_H3K4me3",
+        "pos3_RRBS",
+        "pos4_A",
+        "pos4_C",
+        "pos4_G",
+        "pos4_T",
+        "pos4_CTCF",
+        "pos4_Dnase",
+        "pos4_H3K4me3",
+        "pos4_RRBS",
+        "pos5_A",
+        "pos5_C",
+        "pos5_G",
+        "pos5_T",
+        "pos5_CTCF",
+        "pos5_Dnase",
+        "pos5_H3K4me3",
+        "pos5_RRBS",
+        "pos6_A",
+        "pos6_C",
+        "pos6_G",
+        "pos6_T",
+        "pos6_CTCF",
+        "pos6_Dnase",
+        "pos6_H3K4me3",
+        "pos6_RRBS",
+        "pos7_A",
+        "pos7_C",
+        "pos7_G",
+        "pos7_T",
+        "pos7_CTCF",
+        "pos7_Dnase",
+        "pos7_H3K4me3",
+        "pos7_RRBS",
+        "pos8_A",
+        "pos8_C",
+        "pos8_G",
+        "pos8_T",
+        "pos8_CTCF",
+        "pos8_Dnase",
+        "pos8_H3K4me3",
+        "pos8_RRBS",
+        "pos9_A",
+        "pos9_C",
+        "pos9_G",
+        "pos9_T",
+        "pos9_CTCF",
+        "pos9_Dnase",
+        "pos9_H3K4me3",
+        "pos9_RRBS",
+        "pos10_A",
+        "pos10_C",
+        "pos10_G",
+        "pos10_T",
+        "pos10_CTCF",
+        "pos10_Dnase",
+        "pos10_H3K4me3",
+        "pos10_RRBS",
+        "pos11_A",
+        "pos11_C",
+        "pos11_G",
+        "pos11_T",
+        "pos11_CTCF",
+        "pos11_Dnase",
+        "pos11_H3K4me3",
+        "pos11_RRBS",
+        "pos12_A",
+        "pos12_C",
+        "pos12_G",
+        "pos12_T",
+        "pos12_CTCF",
+        "pos12_Dnase",
+        "pos12_H3K4me3",
+        "pos12_RRBS",
+        "pos13_A",
+        "pos13_C",
+        "pos13_G",
+        "pos13_T",
+        "pos13_CTCF",
+        "pos13_Dnase",
+        "pos13_H3K4me3",
+        "pos13_RRBS",
+        "pos14_A",
+        "pos14_C",
+        "pos14_G",
+        "pos14_T",
+        "pos14_CTCF",
+        "pos14_Dnase",
+        "pos14_H3K4me3",
+        "pos14_RRBS",
+        "pos15_A",
+        "pos15_C",
+        "pos15_G",
+        "pos15_T",
+        "pos15_CTCF",
+        "pos15_Dnase",
+        "pos15_H3K4me3",
+        "pos15_RRBS",
+        "pos16_A",
+        "pos16_C",
+        "pos16_G",
+        "pos16_T",
+        "pos16_CTCF",
+        "pos16_Dnase",
+        "pos16_H3K4me3",
+        "pos16_RRBS",
+        "pos17_A",
+        "pos17_C",
+        "pos17_G",
+        "pos17_T",
+        "pos17_CTCF",
+        "pos17_Dnase",
+        "pos17_H3K4me3",
+        "pos17_RRBS",
+        "pos18_A",
+        "pos18_C",
+        "pos18_G",
+        "pos18_T",
+        "pos18_CTCF",
+        "pos18_Dnase",
+        "pos18_H3K4me3",
+        "pos18_RRBS",
+        "pos19_A",
+        "pos19_C",
+        "pos19_G",
+        "pos19_T",
+        "pos19_CTCF",
+        "pos19_Dnase",
+        "pos19_H3K4me3",
+        "pos19_RRBS",
+        "pos20_A",
+        "pos20_C",
+        "pos20_G",
+        "pos20_T",
+        "pos20_CTCF",
+        "pos20_Dnase",
+        "pos20_H3K4me3",
+        "pos20_RRBS",
+        "pos21_A",
+        "pos21_C",
+        "pos21_G",
+        "pos21_T",
+        "pos21_CTCF",
+        "pos21_Dnase",
+        "pos21_H3K4me3",
+        "pos21_RRBS",
+        "pos22_A",
+        "pos22_C",
+        "pos22_G",
+        "pos22_T",
+        "pos22_CTCF",
+        "pos22_Dnase",
+        "pos22_H3K4me3",
+        "pos22_RRBS",
+        "pos23_A",
+        "pos23_C",
+        "pos23_G",
+        "pos23_T",
+        "pos23_CTCF",
+        "pos23_Dnase",
+        "pos23_H3K4me3",
+        "pos23_RRBS"
+    ],
+    "encoding": {
+        "sequence": {
+            "encoding": "one_hot",
+            "alphabet": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "channel_order": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "base_to_channel_index": {
+                "A": 0,
+                "C": 1,
+                "G": 2,
+                "T": 3
+            },
+            "unknown_base_policy": "error",
+            "unknown_base_message": "见 feature_engineering.encode_sgrna：碱基不在 alphabet 中时抛 ValueError",
+            "supported_bases": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "unsupported_bases": [
+                "N",
+                "其它 IUPAC 退化码",
+                "小写以外的空白字符"
+            ],
+            "note": "N 不被支持。上游适配器已把序列过滤为 [ACGT]{23}；若出现 N 会在此处报错而不是静默置零。"
+        },
+        "environment": {
+            "default_type": "per_position_binary",
+            "value_set": [
+                0.0,
+                1.0
+            ],
+            "features": [
+                {
+                    "name": "CTCF",
+                    "column": "CTCF",
+                    "type": "per_position_binary",
+                    "encoding": {
+                        "A": 1,
+                        "N": 0
+                    },
+                    "enabled": true
+                },
+                {
+                    "name": "Dnase",
+                    "column": "Dnase",
+                    "type": "per_position_binary",
+                    "encoding": {
+                        "A": 1,
+                        "N": 0
+                    },
+                    "enabled": true
+                },
+                {
+                    "name": "H3K4me3",
+                    "column": "H3K4me3",
+                    "type": "per_position_binary",
+                    "encoding": {
+                        "A": 1,
+                        "N": 0
+                    },
+                    "enabled": true
+                },
+                {
+                    "name": "RRBS",
+                    "column": "RRBS",
+                    "type": "per_position_binary",
+                    "encoding": {
+                        "A": 1,
+                        "N": 0
+                    },
+                    "enabled": true
+                }
+            ],
+            "note": "encoding 里的 A/N 是**原始 CSV 字符串**到二值的映射（A=1 可及 / N=0 不可及），不是张量里的通道下标。"
+        }
+    },
+    "layout": {
+        "tensor_shape": [
+            23,
+            8
+        ],
+        "flatten_order": "position_major",
+        "flatten_index_formula": "flat_index = position0_based * channel_count + channel_index",
+        "position_indexing": "1-based",
+        "channel_indexing": "0-based",
+        "channel_order": [
+            "A",
+            "C",
+            "G",
+            "T",
+            "CTCF",
+            "Dnase",
+            "H3K4me3",
+            "RRBS"
+        ],
+        "feature_names_layout": "feature_names[flat_index] 即张量展平后的第 flat_index 个分量",
+        "sequence_block": "channel 0..3 为序列；channel 4..7 为环境"
+    },
+    "sequence_definition": {
+        "length_nt": 23,
+        "protospacer_positions": "1-20",
+        "pam_positions": "21-23",
+        "pam_motif": "NGG",
+        "pam_included_in_tensor": true,
+        "note": "23 nt 输入 = 20 nt protospacer + 3 nt PAM；PAM 处于张量的第 21-23 位，因此序列信号天然包含 PAM。外部数据集由适配器取 'spacer + 后 3 nt' 构造。"
+    },
+    "normalization": {
+        "applied_in_tensor": false,
+        "note": "特征工程阶段不做任何标准化：序列为 0/1 one-hot，环境为 0/1 二值。标准化是**模型级运行时开关**（train.py --use-scaler，默认关闭），不改变本 schema 描述的张量。"
+    },
+    "model_compatibility": {
+        "linear": {
+            "reference_column_dropped": true,
+            "dropped_suffix": "_T",
+            "input_dim": 161,
+            "note": "哑变量陷阱防护：剔除全部 *_T 通道（T 为基准对照，每位点 1 个，共 23 个），保留截距项。见 core/models/linear/linear_regression.py。"
+        },
+        "xgboost": {
+            "input_dim": 184,
+            "note": "使用完整展平维度"
+        },
+        "mlp": {
+            "input_dim": 184,
+            "note": "使用完整展平维度"
+        },
+        "cnn": {
+            "input_shape": [
+                23,
+                8
+            ],
+            "note": "双分支：序列通道与(可选)环境通道分别卷积；不展平"
+        },
+        "transformer": {
+            "input_shape": [
+                23,
+                8
+            ],
+            "note": "按位置为 token 的序列模型；不展平"
+        }
+    },
+    "source": {
+        "generated_by": "core/features/engineering/feature_engineering.py::generate_feature_schema",
+        "feature_config": "/home/zhang/bioprogram/Submit/data/config/DeepCRISPR.json",
+        "feature_config_sha256": "047d4b3d6de5a0a49c78651703ecf0bbe23ac07f787d6e3d372eb19207225094",
+        "note": "本文件由特征工程自动生成，请勿手工编辑；要改编码/序列长度请改数据集配置（data/config/<数据集>.json）后重新运行特征工程。"
+    }
+}

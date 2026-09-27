@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "name": "Labuhn",
+  "description": "每个数据集一个自包含配置文件：数据集规格 + 特征映射 + 序列长度。人可直接编辑。",
+
+  "raw_dir": "data/raw/Labuhn",
+  "processed_dir": "data/processed/Labuhn",
+
+  "sequence_length": 23,
+  "protospacer_length": 20,
+
+  "has_environment": false,
+  "channel_count": 4,
+  "sequence_column": "sgRNA_sequence",
+  "label_column": "KO_reporter_assay",
+  "label_normalized": "no",
+  "label_normalization": {
+    "method": "none",
+    "divisor": null,
+    "note": "KO_reporter_assay 本身就是 [0,1]；本仓库只校验、不缩放。"
+  },
+  "label_scale": "已是 [0,1]；适配器不再缩放",
+  "input_sequence_nt": 20,
+  "pam": "由 extended_spacer 定位后取后 3 nt（要求 GG）",
+  "cell_lines": ["labuhn"],
+  "raw_layout": "单文件：Labuhn.CSV（--format labuhn）",
+  "source": "Labuhn et al. 2018, Nucleic Acids Research 46(3):1375-1385",
+  "notes": "无表观通道；同一 sgRNA 的重复测量按均值合并（5 条）。标签语义与 DeepCRISPR 不同。",
+
+  "feature_config": {
+    "sequence_channels": [
+      "A",
+      "C",
+      "G",
+      "T"
+    ],
+    "environment_features": [],
+    "metadata_columns": [
+      "Cell line",
+      "Strand",
+      "sgRNA"
+    ]
+  }
+}

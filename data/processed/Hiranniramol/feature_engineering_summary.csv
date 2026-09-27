@@ -1,0 +1,2 @@
+cell_line,source_format,source_file,rows_in_raw,rows_dropped_by_adapter,adapter_drop_reasons,target_range,has_epigenetics,original_samples,duplicate_rows,final_samples,channel_count,feature_count
+hiranniramol,hiranniramol,Hiranniramol.CSV,1309,0,{},0~1,False,1309,0,1309,4,92

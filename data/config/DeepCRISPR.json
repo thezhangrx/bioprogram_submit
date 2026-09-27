@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "name": "DeepCRISPR",
+  "description": "每个数据集一个自包含配置文件：数据集规格 + 特征映射 + 序列长度。人可直接编辑。",
+
+  "raw_dir": "data/raw/DeepCRISPR",
+  "processed_dir": "data/processed/DeepCRISPR",
+
+  "sequence_length": 23,
+  "protospacer_length": 20,
+
+  "has_environment": true,
+  "channel_count": 8,
+  "sequence_column": "sgRNA",
+  "label_column": "Normalized efficacy",
+  "label_normalized": "no",
+  "label_normalization": {
+    "method": "none",
+    "divisor": null,
+    "note": "上游（Chuai et al. 2018）已把效率列归一化到 [0,1]；本仓库只校验、不缩放。"
+  },
+  "label_scale": "[0,1]（上游已归一化，适配器不再缩放）",
+  "input_sequence_nt": 23,
+  "pam": "NGG（第 21-23 位；PAM 已包含在 23 nt 输入中）",
+  "cell_lines": ["hct116", "hek293t", "hela", "hl60"],
+  "raw_layout": "每细胞系一个 CSV：hct116.csv / hek293t.csv / hela.csv / hl60.csv",
+  "source": "Chuai et al. 2018, Genome Biology (DeepCRISPR)",
+  "notes": "唯一带表观遗传通道的数据集；four-cell-line 与 LOCO 划分只在此数据集上有意义。",
+
+  "feature_config": {
+    "sequence_channels": [
+      "A",
+      "C",
+      "G",
+      "T"
+    ],
+    "environment_features": [
+      {
+        "name": "CTCF",
+        "column": "CTCF",
+        "type": "per_position_binary",
+        "encoding": {
+          "A": 1,
+          "N": 0
+        },
+        "enabled": true
+      },
+      {
+        "name": "Dnase",
+        "column": "Dnase",
+        "type": "per_position_binary",
+        "encoding": {
+          "A": 1,
+          "N": 0
+        },
+        "enabled": true
+      },
+      {
+        "name": "H3K4me3",
+        "column": "H3K4me3",
+        "type": "per_position_binary",
+        "encoding": {
+          "A": 1,
+          "N": 0
+        },
+        "enabled": true
+      },
+      {
+        "name": "RRBS",
+        "column": "RRBS",
+        "type": "per_position_binary",
+        "encoding": {
+          "A": 1,
+          "N": 0
+        },
+        "enabled": true
+      }
+    ],
+    "metadata_columns": [
+      "Cell line",
+      "Chromosome",
+      "Start",
+      "End",
+      "Strand",
+      "sgRNA"
+    ]
+  }
+}

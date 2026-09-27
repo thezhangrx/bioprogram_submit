@@ -1,0 +1,2 @@
+cell_line,source_format,source_file,rows_in_raw,rows_dropped_by_adapter,adapter_drop_reasons,target_range,has_epigenetics,original_samples,duplicate_rows,final_samples,channel_count,feature_count
+labuhn,labuhn,Labuhn.CSV,430,8,"{""spacer_not_in_extended"": 8}",0~0.973,False,417,0,417,4,92

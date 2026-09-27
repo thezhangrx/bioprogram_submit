@@ -1,0 +1,5 @@
+cell_line,source_format,source_file,rows_in_raw,rows_dropped_by_adapter,adapter_drop_reasons,target_range,has_epigenetics,original_samples,duplicate_rows,final_samples,channel_count,feature_count
+hct116,deepcrispr,hct116.csv,4239.0,0.0,{},0.000276045~0.945898,True,4239,0,4239,8,184
+hek293t,deepcrispr,hek293t.csv,4566.0,0.0,"{""exact_duplicate_rows"": 2233}",0.0369095~0.590267,True,2333,0,2333,8,184
+hela,deepcrispr,hela.csv,8101.0,0.0,{},0~1,True,8101,0,8101,8,184
+hl60,deepcrispr,hl60.csv,2076.0,0.0,{},0.0277829~0.692699,True,2076,0,2076,8,184

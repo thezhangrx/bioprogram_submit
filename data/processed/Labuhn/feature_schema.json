@@ -1,0 +1,225 @@
+{
+    "schema_version": 2,
+    "sequence_length": 23,
+    "sequence_channels": [
+        "A",
+        "C",
+        "G",
+        "T"
+    ],
+    "environment_features": [],
+    "channel_count": 4,
+    "feature_count": 92,
+    "channel_names": [
+        "A",
+        "C",
+        "G",
+        "T"
+    ],
+    "feature_names": [
+        "pos1_A",
+        "pos1_C",
+        "pos1_G",
+        "pos1_T",
+        "pos2_A",
+        "pos2_C",
+        "pos2_G",
+        "pos2_T",
+        "pos3_A",
+        "pos3_C",
+        "pos3_G",
+        "pos3_T",
+        "pos4_A",
+        "pos4_C",
+        "pos4_G",
+        "pos4_T",
+        "pos5_A",
+        "pos5_C",
+        "pos5_G",
+        "pos5_T",
+        "pos6_A",
+        "pos6_C",
+        "pos6_G",
+        "pos6_T",
+        "pos7_A",
+        "pos7_C",
+        "pos7_G",
+        "pos7_T",
+        "pos8_A",
+        "pos8_C",
+        "pos8_G",
+        "pos8_T",
+        "pos9_A",
+        "pos9_C",
+        "pos9_G",
+        "pos9_T",
+        "pos10_A",
+        "pos10_C",
+        "pos10_G",
+        "pos10_T",
+        "pos11_A",
+        "pos11_C",
+        "pos11_G",
+        "pos11_T",
+        "pos12_A",
+        "pos12_C",
+        "pos12_G",
+        "pos12_T",
+        "pos13_A",
+        "pos13_C",
+        "pos13_G",
+        "pos13_T",
+        "pos14_A",
+        "pos14_C",
+        "pos14_G",
+        "pos14_T",
+        "pos15_A",
+        "pos15_C",
+        "pos15_G",
+        "pos15_T",
+        "pos16_A",
+        "pos16_C",
+        "pos16_G",
+        "pos16_T",
+        "pos17_A",
+        "pos17_C",
+        "pos17_G",
+        "pos17_T",
+        "pos18_A",
+        "pos18_C",
+        "pos18_G",
+        "pos18_T",
+        "pos19_A",
+        "pos19_C",
+        "pos19_G",
+        "pos19_T",
+        "pos20_A",
+        "pos20_C",
+        "pos20_G",
+        "pos20_T",
+        "pos21_A",
+        "pos21_C",
+        "pos21_G",
+        "pos21_T",
+        "pos22_A",
+        "pos22_C",
+        "pos22_G",
+        "pos22_T",
+        "pos23_A",
+        "pos23_C",
+        "pos23_G",
+        "pos23_T"
+    ],
+    "encoding": {
+        "sequence": {
+            "encoding": "one_hot",
+            "alphabet": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "channel_order": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "base_to_channel_index": {
+                "A": 0,
+                "C": 1,
+                "G": 2,
+                "T": 3
+            },
+            "unknown_base_policy": "error",
+            "unknown_base_message": "见 feature_engineering.encode_sgrna：碱基不在 alphabet 中时抛 ValueError",
+            "supported_bases": [
+                "A",
+                "C",
+                "G",
+                "T"
+            ],
+            "unsupported_bases": [
+                "N",
+                "其它 IUPAC 退化码",
+                "小写以外的空白字符"
+            ],
+            "note": "N 不被支持。上游适配器已把序列过滤为 [ACGT]{23}；若出现 N 会在此处报错而不是静默置零。"
+        },
+        "environment": {
+            "default_type": "per_position_binary",
+            "value_set": [
+                0.0,
+                1.0
+            ],
+            "features": [],
+            "note": "encoding 里的 A/N 是**原始 CSV 字符串**到二值的映射（A=1 可及 / N=0 不可及），不是张量里的通道下标。"
+        }
+    },
+    "layout": {
+        "tensor_shape": [
+            23,
+            4
+        ],
+        "flatten_order": "position_major",
+        "flatten_index_formula": "flat_index = position0_based * channel_count + channel_index",
+        "position_indexing": "1-based",
+        "channel_indexing": "0-based",
+        "channel_order": [
+            "A",
+            "C",
+            "G",
+            "T"
+        ],
+        "feature_names_layout": "feature_names[flat_index] 即张量展平后的第 flat_index 个分量",
+        "sequence_block": "channel 0..3 为序列；channel 4..3 为环境"
+    },
+    "sequence_definition": {
+        "length_nt": 23,
+        "protospacer_positions": "1-20",
+        "pam_positions": "21-23",
+        "pam_motif": "NGG",
+        "pam_included_in_tensor": true,
+        "note": "23 nt 输入 = 20 nt protospacer + 3 nt PAM；PAM 处于张量的第 21-23 位，因此序列信号天然包含 PAM。外部数据集由适配器取 'spacer + 后 3 nt' 构造。"
+    },
+    "normalization": {
+        "applied_in_tensor": false,
+        "note": "特征工程阶段不做任何标准化：序列为 0/1 one-hot，环境为 0/1 二值。标准化是**模型级运行时开关**（train.py --use-scaler，默认关闭），不改变本 schema 描述的张量。"
+    },
+    "model_compatibility": {
+        "linear": {
+            "reference_column_dropped": true,
+            "dropped_suffix": "_T",
+            "input_dim": 69,
+            "note": "哑变量陷阱防护：剔除全部 *_T 通道（T 为基准对照，每位点 1 个，共 23 个），保留截距项。见 core/models/linear/linear_regression.py。"
+        },
+        "xgboost": {
+            "input_dim": 92,
+            "note": "使用完整展平维度"
+        },
+        "mlp": {
+            "input_dim": 92,
+            "note": "使用完整展平维度"
+        },
+        "cnn": {
+            "input_shape": [
+                23,
+                4
+            ],
+            "note": "双分支：序列通道与(可选)环境通道分别卷积；不展平"
+        },
+        "transformer": {
+            "input_shape": [
+                23,
+                4
+            ],
+            "note": "按位置为 token 的序列模型；不展平"
+        }
+    },
+    "source": {
+        "generated_by": "core/features/engineering/feature_engineering.py::generate_feature_schema",
+        "feature_config": "/home/zhang/bioprogram/Submit/data/config/Labuhn.json",
+        "feature_config_sha256": "02e5cb143d8bac5e197611aba803c8d0415e0a87adeb0622a021af4cac841630",
+        "note": "本文件由特征工程自动生成，请勿手工编辑；要改编码/序列长度请改数据集配置（data/config/<数据集>.json）后重新运行特征工程。"
+    }
+}
