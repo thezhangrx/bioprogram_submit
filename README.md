@@ -2326,7 +2326,7 @@ Evidence / Robustness）。计算证据能回答的是"**在同一批数据里�
 **对象**：`analysis.crispron_validation`（CNN7 × CRISPRon 的 Pos18 C→A 一致性验证），
 交付物为 `results/summary/DeepCRISPR/cnn7_validation.md` 与 `.csv`。
 
-**设计**（先把"比什么"钉死，再比）：
+**设计**：
 
 - 取 DeepCRISPR **四个细胞系全部**第 18 位原始碱基为 `C` 的序列，共 **5,080 条**；
 - 对每条序列做**同一处碱基替换** `C → A`：这是**合法的 one-hot 碱基替换**
