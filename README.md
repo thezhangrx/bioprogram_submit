@@ -218,7 +218,9 @@ pip install -r deploy/requirements.txt
 
 ## 4. 数据集
 
-三个数据集各由一个**自包含**配置文件登记：`data/config/DeepCRISPR.json` / `Hiranniramol.json` / `Labuhn.json`。若新增数据集需编写相应的.json,说明见 `data/config/README.md`。
+**平台以支持用户挖掘自己的数据集为目标,导入数据集应以csv格式为准, 格式参考data/raw中的csv。**
+
+平台附有三个数据集,各由一个**自包含**配置文件登记：`data/config/DeepCRISPR.json` / `Hiranniramol.json` / `Labuhn.json`。若新增数据集需编写相应的.json, 说明见 `data/config/README.md`。
 
 ### 4.1 DeepCRISPR（主数据集）
 
@@ -315,7 +317,7 @@ python core/features/engineering/validate_feature_schema.py --data-set DeepCRISP
 5. **序列 one-hot 编码**：4 条序列通道（顺序由 `sequence_channels` 声明，本项目为 A/C/G/T）× `sequence_length`（23）→ `(N, 23, 4)`。
 6. **环境（表观）通道编码**：`environment_features` 声明的每条轨道按**逐位点映射**编码成 `(N, 23, 1)`，再沿通道轴拼接。轨道长度必须等于 `sequence_length`；出现配置里未声明的字符**直接报错**，不静默填 0；三种轨道类型分别为逐位点二值（`per_position_binary`）、逐位点数值（`per_position_numeric`）、全局标量广播（`global_numeric`）。
 7. **张量组装与落盘**：拼成 `(N, 23, C)` 张量、展平 `(N, 23×C)` 张量、`<cell>_labels.npy`，并同步写同名 CSV 便于人工查看；`<cell>_metadata.csv` 保存序列 + 标签 + `metadata_columns` 声明的元数据列（数据里没有的列会被跳过，不报错）。
-8. **编码声明生成**：`feature_schema.json` 记录通道顺序与含义、序列长度 / protospacer 区间、PAM 是否在张量内、展平公式、`layout` 与 `model_compatibility`——它是**编码语义的唯一权威**，训练端只读它、不读数据集 JSON。
+8. **编码声明生成**：`feature_schema.json` 记录通道顺序与含义、序列长度 / protospacer 区间、PAM 是否在张量内、展平公式、`layout` 与 `model_compatibility`。
 9. **收编统计**：`feature_engineering_summary.csv` 逐细胞系记录 `rows_in_raw` / `rows_dropped_by_adapter` / `adapter_drop_reasons` / `target_range` / `has_epigenetics` / `original_samples` / `duplicate_rows` / `final_samples` / `channel_count` / `feature_count`，用来回答"这批数据是怎么变少的"。
 10. **多次运行写同一目录**：同一数据集可换 `--raw-data` 反复运行、输出到同一 `--output-dir`（`<cell>_*` 按细胞系各自落盘），用于拼装 LODO / 多来源训练集；若不同来源产生了**同名细胞系**，程序会直接报错（"会产生同名输出互相覆盖"）而不是静默覆盖。
 11. **下游对账**：`validate_feature_schema.py` 把"配置声明"与"实际张量"逐项对账（通道数 / 序列长度 / 展平维度 / 由 metadata 重建的 one-hot 是否逐元素相等 / 环境取值 ⊆ {0,1}）；训练端只按 `feature_schema.json` 决定输入形状。
