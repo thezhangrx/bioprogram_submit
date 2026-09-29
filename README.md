@@ -1027,7 +1027,7 @@ R²、RMSE、MAE、Pearson、Spearman —— 五项在 5 个模型里由**逐行
 
 **原理.** 以最小二乘拟合 $\hat y = Xw$。为避免共线设计导致的数值爆炸，系数用 Moore–Penrose 伪逆求解（`np.linalg.pinv(X_bias, rcond=1e-15)`）：
 
-$$w = (X^{\top}X)^{+}X^{\top}y,\qquad \mathrm{rank} = \#\{\sigma_i > \texttt{rcond}\cdot\sigma_{\max}\}$$
+$$w = (X^{\top}X)^{+}X^{\top}y,\qquad \mathrm{rank} = \mathrm{card} \lbrace \sigma_i > \texttt{rcond}\cdot\sigma_{\max}\rbrace $$
 
 系数标准误由残差方差经伪逆传播得到：
 
@@ -1056,7 +1056,7 @@ $$t_i = \frac{w_i}{\mathrm{SE}_i},\qquad p_i = 2\Big(1-F_t\big(|t_i|;\ \mathrm{d
 **SHAP 的原理与目标.** SHAP（SHapley Additive exPlanations）把单个预测分解为各特征的**净贡献**：
 
 $$f(x) = \varphi_0 + \sum_{i=1}^{p}\varphi_i,\qquad
-\varphi_i = \sum_{S\subseteq F\setminus\{i\}} \frac{|S|!\,(p-|S|-1)!}{p!}\,\Big[f\big(S\cup\{i\}\big) - f\big(S\big)\Big]$$
+\varphi_i = \sum_{S\subseteq F\setminus\lbrace i\rbrace } \frac{|S|!\thinspace (p-|S|-1)!}{p!}\thinspace \Big[f\big(S\cup\lbrace i\rbrace \big) - f\big(S\big)\Big]$$
 
 第一式是**局部精确性**（各特征贡献 + 基线 = 该样本预测值，所以"净"体现在贡献之间不重复计数）；第二式是**Shapley 值**，即"在所有可能的特征子集 $S$ 中，加入特征 $i$ 带来的平均边际增益"——这正是合作博弈论里对"公平分配总收益"的唯一满足 4 条公理（效率、对称、虚拟、可加）的解。
 
@@ -1076,7 +1076,7 @@ $$\mathrm{IG}_i(x) = (x_i - x'_i)\times \frac1m\sum_{k=1}^{m}\frac{\partial F\bi
 
 - 基线 $x' = \mathbf{0}$（全零张量）；步数 $m=25$；实现上取 $\alpha=\mathrm{linspace}(0,1,m+1)$ 得到 $m+1$ 个点，梯度对前 $m$ 个点取平均（`grads[:-1].mean(0)`，右端点梯形修正）。
 - **完备性公理**：$\sum_i \mathrm{IG}_i = F(x) - F(x')$，即归因之和精确等于"从基线到输入"的预测变化——这是 IG 相比原始梯度（gradient×input）的核心优势，避免梯度饱和导致的低估。
-- 导出量：`MLP_IG` $= \mathbb{E}_n[\,|\mathrm{IG}_i|\,]$（跨样本绝对值均值,即使贡献方向不同也不会相互抵消），`IG_SNR` $= \dfrac{\mathbb{E}_n|\mathrm{IG}_i|}{\mathrm{std}_n(\mathrm{IG}_i)+10^{-12}}$。
+- 导出量：`MLP_IG` $= \mathbb{E}_n[\thinspace |\mathrm{IG}_i|\thinspace ]$（跨样本绝对值均值,即使贡献方向不同也不会相互抵消），`IG_SNR` $= \dfrac{\mathbb{E}_n|\mathrm{IG}_i|}{\mathrm{std}_n(\mathrm{IG}_i)+10^{-12}}$。
 
 **目标**：回答"**输入特征对黑盒 MLP 预测的贡献有多大**"，并用 SNR 说明该贡献在样本间是否一致，**不含方向**。
 
@@ -1093,8 +1093,8 @@ CNN 是双分支结构（序列分支 + 环境分支各自卷积），归因同�
 **原理.** 对每个 $(l,c)$ 做**单通道扰动**：把该通道的值翻转（`>0 → 0`，`=0 → 1`），重新前向：
 
 $$\Delta_{l,c} = \big|\hat y_{\text{mut}(l,c)} - \hat y_{\text{base}}\big|,\qquad
-\texttt{CNN\_ISM}_{l,c}=\mathbb{E}_n[\Delta_{l,c}],\qquad
-\texttt{ISM\_SNR}_{l,c}=\frac{\mathbb{E}_n[\Delta_{l,c}]}{\mathrm{std}_n(\Delta_{l,c})+10^{-12}}$$
+\texttt{CNN\mathunderscore ISM}_{l,c}=\mathbb{E}_n[\Delta_{l,c}],\qquad
+\texttt{ISM\mathunderscore SNR}_{l,c}=\frac{\mathbb{E}_n[\Delta_{l,c}]}{\mathrm{std}_n(\Delta_{l,c})+10^{-12}}$$
 
 **目标.** 回答"**把某个位点的某个通道改掉，模型预测会动多少**"——一种不依赖梯度的、对任意模型都成立的重要性度量，作为 IG 的交叉验证。
 
@@ -1110,11 +1110,11 @@ $$\Delta_{l,c} = \big|\hat y_{\text{mut}(l,c)} - \hat y_{\text{base}}\big|,\qqua
 
 $$\bar A = \frac1h\sum_{h'} A_{h'},\qquad
 \mathrm{incoming}_j = \frac1L\sum_{i=1}^{L}\bar A_{i,j},\qquad
-\texttt{Transformer\_Attention}_j = \mathbb{E}_n[\mathrm{incoming}_j]$$
+\texttt{Transformer\mathunderscore Attention}_j = \mathbb{E}_n[\mathrm{incoming}_j]$$
 
-$$\texttt{Attention\_SNR}_j = \frac{\mathbb{E}_n[\mathrm{incoming}_j]}{\mathrm{std}_n(\mathrm{incoming}_j)+10^{-12}}$$
+$$\texttt{Attention\mathunderscore SNR}_j = \frac{\mathbb{E}_n[\mathrm{incoming}_j]}{\mathrm{std}_n(\mathrm{incoming}_j)+10^{-12}}$$
 
-$$\texttt{Attention\_Entropy} = -\sum_{j=1}^{L}\bar A_j\log_2 \bar A_j\quad(\text{每个样本一个标量，取样本均值后广播到所有位点})$$
+$$\texttt{Attention\mathunderscore Entropy} = -\sum_{j=1}^{L}\bar A_j\log_2 \bar A_j\quad(\text{每个样本一个标量，取样本均值后广播到所有位点})$$
 
 **目标.**
 - `Transformer_Attention`：哪些**序列位置**在模型内部被反复关注（位点级重要性）。
@@ -1165,7 +1165,7 @@ $$\mathrm{SS_{term}} = \max\big(\mathrm{RSS_{reduced}} - \mathrm{RSS_{full}},\ 0
 \mathrm{df_{num}} = p_{\text{full}} - p_{\text{reduced}}$$
 
 $$F = \frac{\mathrm{SS_{term}}/\mathrm{df_{num}}}{\mathrm{RSS_{full}}/\mathrm{dof_{den}}},\qquad
-p = \Pr\big(F_{\mathrm{df_{num}},\,\mathrm{dof_{den}}} > F\big)$$
+p = \Pr\big(F_{\mathrm{df_{num}},\thinspace \mathrm{dof_{den}}} > F\big)$$
 
 - **效应量（`effect_size`）**：代码计算的是 **partial $\eta^2$**（与 `AnovaRuleConfig.effect_size_metric = "partial_eta_squared"` 一致）：
 
@@ -1199,11 +1199,11 @@ p = \Pr\big(F_{\mathrm{df_{num}},\,\mathrm{dof_{den}}} > F\big)$$
 
 $$H_0:\ \mathbb{E}[x] = \mu_0 \quad(\text{默认}\ \mu_0=0),\qquad \text{统计量}\ T = \bar x = \frac1n\sum_i x_i$$
 
-$H_0$ 下差值关于 0 **对称**，因此**符号可交换**。每次置换独立抽取随机符号 $s_i\in\{-1,+1\}$，计算置换统计量：
+$H_0$ 下差值关于 0 **对称**，因此**符号可交换**。每次置换独立抽取随机符号 $s_i\in\lbrace -1,+1\rbrace $，计算置换统计量：
 
-$$T^{*(b)} = \frac1n\sum_{i=1}^{n} s_i^{(b)}\,(x_i-\mu_0),\qquad b=1,\dots,B$$
+$$T^{\ast (b)} = \frac1n\sum_{i=1}^{n} s_i^{(b)}\thinspace (x_i-\mu_0),\qquad b=1,\dots,B$$
 
-$$p = \frac{\#\{b:\ T^{*(b)} \ge T_{\text{obs}}\} + 1}{B + 1}\quad(\texttt{greater};\ \texttt{less}\ \text{与}\ \texttt{two\_sided}\ \text{对称处理})$$
+$$p = \frac{\mathrm{card} \lbrace b:\ T^{\ast (b)} \ge T_{\text{obs}}\rbrace  + 1}{B + 1}\quad(\texttt{greater};\ \texttt{less}\ \text{与}\ \texttt{two\mathunderscore sided}\ \text{对称处理})$$
 
 - $B = 1000$，`seed = 2024`；分子分母同时 $+1$ 是标准的**无偏修正**——它把观测值本身也算作一个可能的置换结果，避免 $p=0$ 这种不可能的精确值。
 - **为什么必须翻转符号而不是重排位置**：直接对中心化值做位置重排，均值 $\bar x$ 是置换不变量，会得到退化的 $p$；代码注释里专门写了这一点。
@@ -1226,11 +1226,11 @@ $$p = \frac{\#\{b:\ T^{*(b)} \ge T_{\text{obs}}\} + 1}{B + 1}\quad(\texttt{great
 | **前景**（高活性序列） | $a$ | $b$ | $a+b$ |
 | **背景**（其余合格序列） | $c$ | $d$ | $c+d$ |
 
-$$p = \Pr(X \ge a) = \sum_{k=a}^{\min(a+b,\,a+c)} \frac{\dbinom{a+b}{k}\dbinom{c+d}{a+c-k}}{\dbinom{n}{a+c}},\qquad n=a+b+c+d$$
+$$p = \Pr(X \ge a) = \sum_{k=a}^{\min(a+b,\thinspace a+c)} \frac{\dbinom{a+b}{k}\dbinom{c+d}{a+c-k}}{\dbinom{n}{a+c}},\qquad n=a+b+c+d$$
 
 效应量用**优势比**：
 
-$$\mathrm{OR} = \frac{a\,d}{b\,c}\quad(\text{当 } b>0,\ c>0,\ a>0\ \text{时给出，否则 } \texttt{None})$$
+$$\mathrm{OR} = \frac{a\thinspace d}{b\thinspace c}\quad(\text{当 } b>0,\ c>0,\ a>0\ \text{时给出，否则 } \texttt{None})$$
 
 另有 $\mathrm{enrichment} = \dfrac{a/(a+b)}{c/(c+d)}$（前景频率 / 背景频率）与 $\mathrm{effect} = \dfrac{a}{a+b} - \dfrac{c}{c+d}$（频率差）。
 
@@ -1266,7 +1266,7 @@ $$p = \Pr\big(T(X) \succeq T(x_{\text{obs}})\ \big|\ H_0\big)$$
 
 | 来源 | $H_0$ | 计算方式 | 产物列 |
 | :--- | :--- | :--- | :--- |
-| **符号翻转置换** | 配对差值的均值为 0（差值关于 0 对称） | 经验零分布，$B=1000$，$p=\frac{\#\{T^*\ge T\}+1}{B+1}$ | `permutation_results.p_value` / `.FDR` |
+| **符号翻转置换** | 配对差值的均值为 0（差值关于 0 对称） | 经验零分布，$B=1000$，$p=\frac{\mathrm{card} \lbrace T^\ast \ge T\rbrace +1}{B+1}$ | `permutation_results.p_value` / `.FDR` |
 | **Factorial ANOVA F** | 该因子的额外平方和为 0 | 解析 $F$ 分布尾概率 | `anova_results.p_value` |
 | **Fisher 精确检验** | motif 与前景/背景独立（OR=1） | 超几何精确尾概率 | `motif_enrichment.p_value` / `.FDR` |
 | **线性回归 t 检验** | 该系数为 0 | 解析 t 分布双尾尾概率 | 线性 `p_value` / `FDR` |
@@ -1277,7 +1277,7 @@ $$p = \Pr\big(T(X) \succeq T(x_{\text{obs}})\ \big|\ H_0\big)$$
 
 **原理**： 把 $m$ 个 p 值升序排列 $p_{(1)}\le\dots\le p_{(m)}$，BH 的**逐步上升（step-up）**过程给出
 
-$$q_{(i)} = \min_{j \ge i}\ \Big(\frac{m}{j}\,p_{(j)}\Big),\qquad q_{(i)} \leftarrow \min\big(q_{(i)},\,1\big)$$
+$$q_{(i)} = \min_{j \ge i}\ \Big(\frac{m}{j}\thinspace p_{(j)}\Big),\qquad q_{(i)} \leftarrow \min\big(q_{(i)},\thinspace 1\big)$$
 
 （代码实现为从大到小倒序遍历并维护 `min_q`，天然得到单调非降的 q 序列；数值与 `statsmodels.multipletests` 兼容。）
 
@@ -1299,7 +1299,7 @@ $$q_{(i)} = \min_{j \ge i}\ \Big(\frac{m}{j}\,p_{(j)}\Big),\qquad q_{(i)} \lefta
 
 所有 CI 都是 **percentile bootstrap**：对同一批数据重采样 $B$ 次，取经验分布的 $\alpha/2$ 与 $1-\alpha/2$ 分位数
 
-$$\mathrm{CI}_{1-\alpha} = \Big[\,Q_{\alpha/2}\big(\hat\theta^*_{1..B}\big),\ Q_{1-\alpha/2}\big(\hat\theta^*_{1..B}\big)\,\Big]$$
+$$\mathrm{CI}_{1-\alpha} = \Big[\thinspace Q_{\alpha/2}\big(\hat\theta^\ast _{1..B}\big),\ Q_{1-\alpha/2}\big(\hat\theta^\ast _{1..B}\big)\thinspace \Big]$$
 
 默认 $B=2000$、$\alpha=0.05$（即 95%）、`seed=2024`；`excludes_zero = not(ci_low ≤ 0 ≤ ci_high)`。**迭代数不足或样本 < 3 时返回 `available=False` / `status="unavailable"`，绝不用 0 或点估计冒充 CI。**
 
@@ -1307,7 +1307,7 @@ $$\mathrm{CI}_{1-\alpha} = \Big[\,Q_{\alpha/2}\big(\hat\theta^*_{1..B}\big),\ Q_
 | ---: | :--- | :--- | :--- | :--- |
 | 1 | **通用估计量 CI** | 对一维数据重采样，任意估计量 $\hat\theta$ 的分位数区间 | 该估计量的整体不确定性 | `bootstrap_ci()`（`analysis/stats/bootstrap.py`） |
 | 2 | **配对差 CI**（Paired difference） | **同一次** index 重采样同时作用于 baseline 与 expanded，重算 $\mathrm{metric}(b[idx])-\mathrm{metric}(a[idx])$ | 环境增量 Δ 的稳定性；配对消除了样本组成差异，是项目的 **Paired baseline 原则** | `bootstrap_difference_ci()`；`bootstrap_results.csv`（边级 × R²/MAE/RMSE 三指标 × 4 种子） |
-| 3 | **配对逐样本多指标 CI**（向量化） | 用 multinomial **计数矩阵** $C\in\mathbb{N}^{B\times n}$（$C_{b,i}$ = 第 $b$ 次重采样中样本 $i$ 被抽中的次数）把"逐次重采样再算指标"改写为 **BLAS matvec**：$s_y = C\,y$、$s_{y^2}=C\,(y\odot y)$、$s_{e^2}=C\,e^2$、$s_{\lvert e\rvert}=C\,\lvert e\rvert$，于是<br>$R^2_b = 1-\dfrac{s_{e^2,b}}{s_{y^2,b}-s_{y,b}^2/n}$，$\ \mathrm{MAE}_b=\dfrac{s_{\lvert e\rvert,b}}{n}$，$\ \mathrm{RMSE}_b=\sqrt{\dfrac{s_{e^2,b}}{n}}$；<br>与逐次重采样**逐位等价**（实测 CI 在 $10^{-12}$ 内一致）；`_COUNT_CACHE` 按 $(n,B,\text{seed})$ 复用同一矩阵 | 同一个 CI 框架下批量给出 ΔR²/ΔMAE/ΔRMSE | `bootstrap_paired_metric_ci_fast()` / `bootstrap_paired_metrics_ci_fast()` |
+| 3 | **配对逐样本多指标 CI**（向量化） | 用 multinomial **计数矩阵** $C\in\mathbb{N}^{B\times n}$（$C_{b,i}$ = 第 $b$ 次重采样中样本 $i$ 被抽中的次数）把"逐次重采样再算指标"改写为 **BLAS matvec**：$s_y = C\thinspace y$、$s_{y^2}=C\thinspace (y\odot y)$、$s_{e^2}=C\thinspace e^2$、$s_{\lvert e\rvert}=C\thinspace \lvert e\rvert$，于是<br>$R^2_b = 1-\dfrac{s_{e^2,b}}{s_{y^2,b}-s_{y,b}^2/n}$，$\ \mathrm{MAE}_b=\dfrac{s_{\lvert e\rvert,b}}{n}$，$\ \mathrm{RMSE}_b=\sqrt{\dfrac{s_{e^2,b}}{n}}$；<br>与逐次重采样**逐位等价**（实测 CI 在 $10^{-12}$ 内一致）；`_COUNT_CACHE` 按 $(n,B,\text{seed})$ 复用同一矩阵 | 同一个 CI 框架下批量给出 ΔR²/ΔMAE/ΔRMSE | `bootstrap_paired_metric_ci_fast()` / `bootstrap_paired_metrics_ci_fast()` |
 | 4 | **Factor 级主效应的跨模型 CI** | **模型层** bootstrap：$\hat\theta$ = 跨模型主效应均值，重采样单位是模型而非样本 | "某个环境因子的**总体**效应有多确定" | `bootstrap_main_effects.csv`（4 行，`n_models` 列记录重采样单元数） |
 | 5 | **细胞系级主效应 CI** | 同上，但按 cell line 分组计算 $\hat\theta$ | "某个环境因子的效应**在各细胞系内**是否稳定" | `bootstrap_cellline_effects.csv`（36 行 = all 16 + single 16 + mixed 4） |
 | 6 | **ANOVA 效应量行级 CI** | 对 ANOVA 的**设计矩阵按行**重采样 $B=400$ 次，每次重新解最小二乘并重算 $\sum\beta_\ell$ | 单个 ANOVA 项上"on−off 调整差"的不确定性 | `anova_results.ci_low` / `.ci_high`（`ci_iterations = 400`） |
@@ -1329,7 +1329,7 @@ $$\eta^2_{\text{partial}} = \frac{\mathrm{SS_{term}}}{\mathrm{SS_{term}} + \math
 
 两者与 F 的关系（可用来互相反查）：
 
-$$F = \frac{\eta^2_{\text{partial}}/\,\mathrm{df_{num}}}{(1-\eta^2_{\text{partial}})/\,\mathrm{dof_{den}}}$$
+$$F = \frac{\eta^2_{\text{partial}}/\thinspace \mathrm{df_{num}}}{(1-\eta^2_{\text{partial}})/\thinspace \mathrm{dof_{den}}}$$
 
 **目标**：回答"**这个因素解释实验结果变异的份额是多少**"——即 §18.1 ANOVA 里的 `effect_size` 列。它是 Effect 维度的**无量纲**补充：`effect` 告诉你"改变量有多少"（带标签量纲），$\eta^2$ 告诉你"在总变异里占多大比例"（无量纲，可跨因子比较）。
 
@@ -1495,7 +1495,7 @@ CSV 是**原始交付文件**，Excel 只是同一批数据的汇总视图，两
 
 在单细胞系已通过筛选的候选上，只增加一条 Robustness 判据：
 
-$$cellline\_ratio = \frac{supporting\ celllines}{total\ celllines}, \qquad cellline\_ratio > 0.75$$
+$$cellline\mathunderscore ratio = \frac{supporting\ celllines}{total\ celllines}, \qquad cellline\mathunderscore ratio > 0.75$$
 
 | 字段 | 说明 |
 | :--- | :--- |
