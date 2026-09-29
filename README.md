@@ -1093,8 +1093,8 @@ CNN 是双分支结构（序列分支 + 环境分支各自卷积），归因同�
 **原理.** 对每个 $(l,c)$ 做**单通道扰动**：把该通道的值翻转（`>0 → 0`，`=0 → 1`），重新前向：
 
 $$\Delta_{l,c} = \big|\hat y_{\text{mut}(l,c)} - \hat y_{\text{base}}\big|,\qquad
-\texttt{CNN\mathunderscore ISM}_{l,c}=\mathbb{E}_n[\Delta_{l,c}],\qquad
-\texttt{ISM\mathunderscore SNR}_{l,c}=\frac{\mathbb{E}_n[\Delta_{l,c}]}{\mathrm{std}_n(\Delta_{l,c})+10^{-12}}$$
+\texttt{CNN\\_ISM}_{l,c}=\mathbb{E}_n[\Delta_{l,c}],\qquad
+\texttt{ISM\\_SNR}_{l,c}=\frac{\mathbb{E}_n[\Delta_{l,c}]}{\mathrm{std}_n(\Delta_{l,c})+10^{-12}}$$
 
 **目标.** 回答"**把某个位点的某个通道改掉，模型预测会动多少**"——一种不依赖梯度的、对任意模型都成立的重要性度量，作为 IG 的交叉验证。
 
@@ -1110,11 +1110,11 @@ $$\Delta_{l,c} = \big|\hat y_{\text{mut}(l,c)} - \hat y_{\text{base}}\big|,\qqua
 
 $$\bar A = \frac1h\sum_{h'} A_{h'},\qquad
 \mathrm{incoming}_j = \frac1L\sum_{i=1}^{L}\bar A_{i,j},\qquad
-\texttt{Transformer\mathunderscore Attention}_j = \mathbb{E}_n[\mathrm{incoming}_j]$$
+\texttt{Transformer\\_Attention}_j = \mathbb{E}_n[\mathrm{incoming}_j]$$
 
-$$\texttt{Attention\mathunderscore SNR}_j = \frac{\mathbb{E}_n[\mathrm{incoming}_j]}{\mathrm{std}_n(\mathrm{incoming}_j)+10^{-12}}$$
+$$\texttt{Attention\\_SNR}_j = \frac{\mathbb{E}_n[\mathrm{incoming}_j]}{\mathrm{std}_n(\mathrm{incoming}_j)+10^{-12}}$$
 
-$$\texttt{Attention\mathunderscore Entropy} = -\sum_{j=1}^{L}\bar A_j\log_2 \bar A_j\quad(\text{每个样本一个标量，取样本均值后广播到所有位点})$$
+$$\texttt{Attention\\_Entropy} = -\sum_{j=1}^{L}\bar A_j\log_2 \bar A_j\quad(\text{每个样本一个标量，取样本均值后广播到所有位点})$$
 
 **目标.**
 - `Transformer_Attention`：哪些**序列位置**在模型内部被反复关注（位点级重要性）。
@@ -1203,7 +1203,7 @@ $H_0$ 下差值关于 0 **对称**，因此**符号可交换**。每次置换独
 
 $$T^{\ast (b)} = \frac1n\sum_{i=1}^{n} s_i^{(b)}\thinspace (x_i-\mu_0),\qquad b=1,\dots,B$$
 
-$$p = \frac{\mathrm{card} \lbrace b:\ T^{\ast (b)} \ge T_{\text{obs}}\rbrace  + 1}{B + 1}\quad(\texttt{greater};\ \texttt{less}\ \text{与}\ \texttt{two\mathunderscore sided}\ \text{对称处理})$$
+$$p = \frac{\mathrm{card} \lbrace b:\ T^{\ast (b)} \ge T_{\text{obs}}\rbrace  + 1}{B + 1}\quad(\texttt{greater};\ \texttt{less}\ \text{与}\ \texttt{two\\_sided}\ \text{对称处理})$$
 
 - $B = 1000$，`seed = 2024`；分子分母同时 $+1$ 是标准的**无偏修正**——它把观测值本身也算作一个可能的置换结果，避免 $p=0$ 这种不可能的精确值。
 - **为什么必须翻转符号而不是重排位置**：直接对中心化值做位置重排，均值 $\bar x$ 是置换不变量，会得到退化的 $p$；代码注释里专门写了这一点。
@@ -1495,7 +1495,7 @@ CSV 是**原始交付文件**，Excel 只是同一批数据的汇总视图，两
 
 在单细胞系已通过筛选的候选上，只增加一条 Robustness 判据：
 
-$$cellline\mathunderscore ratio = \frac{supporting\ celllines}{total\ celllines}, \qquad cellline\mathunderscore ratio > 0.75$$
+$$cellline\\_ratio = \frac{supporting\ celllines}{total\ celllines}, \qquad cellline\\_ratio > 0.75$$
 
 | 字段 | 说明 |
 | :--- | :--- |
