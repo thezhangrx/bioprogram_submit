@@ -1303,14 +1303,14 @@ $$\mathrm{CI}_{1-\alpha} = \Big[\thinspace Q_{\alpha/2}\big(\hat\theta^\ast _{1.
 
 默认 $B=2000$、 $\alpha=0.05$（即 95%）、`seed=2024`；`excludes_zero = not(ci_low ≤ 0 ≤ ci_high)`。**迭代数不足或样本 < 3 时返回 `available=False` / `status="unavailable"`，绝不用 0 或点估计冒充 CI。**
 
-| # | 类型 | 原理（重采样单位） | 目标（回答什么） | 产物 |
-| ---: | :--- | :--- | :--- | :--- |
-| 1 | **通用估计量 CI** | 对一维数据重采样，任意估计量 $\hat\theta$ 的分位数区间 | 该估计量的整体不确定性 | `bootstrap_ci()`（`analysis/stats/bootstrap.py`） |
-| 2 | **配对差 CI**（Paired difference） | **同一次** index 重采样同时作用于 baseline 与 expanded，重算 $\mathrm{metric}(b[idx])-\mathrm{metric}(a[idx])$ | 环境增量 Δ 的稳定性；配对消除了样本组成差异，是项目的 **Paired baseline 原则** | `bootstrap_difference_ci()`；`bootstrap_results.csv`（边级 × R²/MAE/RMSE 三指标 × 4 种子） |
-| 3 | **配对逐样本多指标 CI**（向量化） | 用 multinomial **计数矩阵** $C\in\mathbb{N}^{B\times n}$（ $C_{b,i}$ = 第 $b$ 次重采样中样本 $i$ 被抽中的次数）把"逐次重采样再算指标"改写为 **BLAS matvec**： $s_y = C\thinspace y$、 $s_{y^2}=C\thinspace (y\odot y)$、 $s_{e^2}=C\thinspace e^2$、 $s_{\lvert e\rvert}=C\thinspace \lvert e\rvert$，于是<br> $R^2_b = 1-\dfrac{s_{e^2,b}}{s_{y^2,b}-s_{y,b}^2/n}$， $\ \mathrm{MAE}(b)=\dfrac{s_{\lvert e\rvert,b}}{n}$， $\ \mathrm{RMSE}(b)=\sqrt{\dfrac{s_{e^2,b}}{n}}$；<br>与逐次重采样**逐位等价**（实测 CI 在 $10^{-12}$ 内一致）；`_COUNT_CACHE` 按 $(n,B,\text{seed})$ 复用同一矩阵 | 同一个 CI 框架下批量给出 ΔR²/ΔMAE/ΔRMSE | `bootstrap_paired_metric_ci_fast()` / `bootstrap_paired_metrics_ci_fast()` |
-| 4 | **Factor 级主效应的跨模型 CI** | **模型层** bootstrap： $\hat\theta$ = 跨模型主效应均值，重采样单位是模型而非样本 | "某个环境因子的**总体**效应有多确定" | `bootstrap_main_effects.csv`（4 行，`n_models` 列记录重采样单元数） |
-| 5 | **细胞系级主效应 CI** | 同上，但按 cell line 分组计算 $\hat\theta$ | "某个环境因子的效应**在各细胞系内**是否稳定" | `bootstrap_cellline_effects.csv`（36 行 = all 16 + single 16 + mixed 4） |
-| 6 | **ANOVA 效应量行级 CI** | 对 ANOVA 的**设计矩阵按行**重采样 $B=400$ 次，每次重新解最小二乘并重算 $\sum\beta_\ell$ | 单个 ANOVA 项上"on−off 调整差"的不确定性 | `anova_results.ci_low` / `.ci_high`（`ci_iterations = 400`） |
+| 类型 | 计算方式（统计量 / 重采样单位） | 产物 |
+| :--- | :--- | :--- |
+| **通用估计量 CI** | 统计量由调用方以 `estimator: ndarray → float` 传入（接口通用；本项目两处调用均传 `np.mean`，实际用法见第 4、5 行）；对**一维数据**有放回重采样，每次重算该估计量，B=2000 取百分位区间。重采样单位 = 传入的那一维数据 | `bootstrap_ci()`（`analysis/stats/bootstrap.py:52`） |
+| **配对差 CI**（Paired difference） | 统计量 = `metric(expanded) − metric(baseline)`，metric ∈ {R², MAE, RMSE}；**同一次**索引重采样同时作用于 baseline 与 expanded 两臂，逐次重算配对增量，B=2000 取百分位区间。重采样单位 = **测试样本**（每条边 312~8101 个） | `bootstrap_paired_metrics_ci_fast()`（`analysis/stats/bootstrap.py:114`）；`bootstrap_results.csv`（边级 × 三指标 × 4 种子 = 7 954 行） |
+| **配对逐样本多指标 CI**（向量化） | 统计量与第 2 行完全相同（ΔR² / ΔMAE / ΔRMSE），只是改用 multinomial **计数矩阵** $C\in\mathbb{N}^{B\times n}$（ $C_{b,i}$ = 第 $b$ 次重采样中样本 $i$ 被抽中的次数）一次算完三个指标： $s_y=Cy$、 $s_{y^2}=C(y\odot y)$、 $s_{e^2}=Ce^2$、 $s_{\lvert e\rvert}=C\lvert e\rvert$，再套 $R^2_b=1-\dfrac{s_{e^2,b}}{s_{y^2,b}-s_{y,b}^2/n}$、 $\mathrm{MAE}(b)=\dfrac{s_{\lvert e\rvert,b}}{n}$、 $\mathrm{RMSE}(b)=\sqrt{\dfrac{s_{e^2,b}}{n}}$。重采样单位同为**测试样本**，B=2000，与逐次重采样**逐位等价**（实测 CI 差异 < $10^{-12}$），`_COUNT_CACHE` 按 $(n,B,\text{seed})$ 复用矩阵 | `bootstrap_paired_metrics_ci_fast()`（`analysis/stats/bootstrap.py:114`） |
+| **Factor 级主效应的跨模型 CI** | 统计量 = 某个环境因子（ctcf / dnase / h3k4me3 / rrbs）的**主效应**，即对一切不含该因子的背景 $S$ 的 $\Delta R^2(e\mid S)$ 取平均后的跨模型均值。**进 bootstrap 前先按 model 对该因子的 `main_r2_delta` 等权求均值，得到"每个模型一个值"（7 个模型：linear / xgboost / mlp / transformer / cnn(3\|3) / cnn(5\|3) / cnn(7\|3)），再对这 7 个值做 B=2000 的百分位 bootstrap**。重采样单位 = **模型** | `bootstrap_main_effects.csv`（4 行 = ctcf / dnase / h3k4me3 / rrbs；因子列名为 `feature`，`n_models` 记录重采样单元数） |
+| **细胞系级主效应 CI** | 统计量与第 4 行相同，但**限定在单个 `(split_type, cell_line)` 分组内**：进 bootstrap 前先按 model 等权求均值（每组 6~7 个模型值），再对该批模型值做 B=2000 的百分位 bootstrap。重采样单位 = **模型** | `bootstrap_cellline_effects.csv`（36 行 = all 16 + single 16 + mixed 4） |
+| **ANOVA 效应量行级 CI** | 统计量 = ANOVA 的 **on−off 调整差** $\sum_{\ell\neq\ell_0}\beta_{\ell}$（打开该通道相对关闭时，留出 R² 的平均改变量）；对**设计矩阵按行**重采样，每次重新解最小二乘并重算该效应对比，B = `ci_iterations` = 400，取百分位区间。重采样单位 = **设计矩阵行**（`n_obs` = 1324） | `anova_results.ci_low` / `.ci_high`（本批次 94 行中 4 行有值，为 `blocked_factorial` 的 4 个主效应项；其余交互 / 分 scope 行未做行级 CI，56 行因样本不足标 `unavailable`） |
 
 ### 19.4 η²（方差解释比）
 
