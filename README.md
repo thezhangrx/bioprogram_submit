@@ -1564,7 +1564,7 @@ $$\texttt{cellline-ratio} = \frac{supporting\ celllines}{total\ celllines}, \qqu
 > 本结果文件用于赛事展示和候选规律整理，其筛选标准用于提高候选发现效率，并非严格意义上的生物学因果证明。所有候选规律仍需结合独立实验验证或进一步机制研究确认。
 
 
-# R2.results/Summary/<batch>文件说明
+# R2.results/Summary/<batch>文件说明（一些文件对线性回归产生的异常结果进行隔离）
 
 ## 目录一览
 
@@ -1626,7 +1626,7 @@ results/summary/<数据集>/                批次级汇总（§10 + §11）
 + 来源程序: `analysis.visualization.environment_plots`（`render`）
 
 + 说明: 一张热图：行 = 背景组合 `S`，列 = 新增环境因子 `e`，格子 = 条件 ΔR²（只画 ΔR²，1 张）。
-  数值直接取自 `tables/environment_conditional_delta_r2.csv`。
+  数值直接取自 `tables/environment_conditional_delta_r2.csv`。（平均值会被异常条件 ΔR²严重影响）
 
 ### environment/environment_main_effects.png
 
@@ -2190,7 +2190,7 @@ results/summary/<数据集>/                批次级汇总（§10 + §11）
 | `model` / `model_variant` / `attribution_method` | `cnn` / `cnn33`… / `cnn_ig` `cnn_ism` | 归因来源 |
 | `position_start` / `position_end` | 1 ~ 23 | 该实例在序列上的位置 |
 | `sequence` | `AAAG` …（302 个） | 该实例的实测序列 |
-| `attribution_score` † | 实数 | **该实例的归因幅度**（取自 `attribution_summary.importance`，无符号 magnitude）。聚类时按它降序处理，让高分 seqlet 先占位。⚠️ 与 `motif_candidates` 里的汇总量不同：这里是一条实例一个值，没有跨实例平均 |
+| `attribution_score` † | 实数 | **该实例的归因幅度**（取自 `attribution_summary.importance`，无符号 magnitude）。聚类时按它降序处理，让高分 seqlet 先占位。与 `motif_candidates` 里的汇总量不同：这里是一条实例一个值，没有跨实例平均 |
 | `ism_effect` | 实数 | 若该实例来自 `cnn_ism`，这里放 ISM 归因值；否则为空 |
 | `ig_effect` | 实数 | 若该实例来自 `cnn_ig`，这里放 IG 归因值；否则为空。**两列互斥**，保证换方法时数值不被混用 |
 | `direction` | `unsigned` | 恒定：当前批次的 attribution 是无符号幅度。与 `motif_candidates.effect_direction`（来自实测效率）**不是一回事** |
@@ -2291,7 +2291,7 @@ Evidence / Robustness）。计算证据能回答的是"**在同一批数据里�
 2. **Pos18 是一个正向关键位点**
    - `pos18_C` 在三个数据集中**都**出现在关键调控特征库里：DeepCRISPR 91,747 行中 796 行、
      Hiranniramol 421 行中 5 行、Labuhn 390 行中 5 行；
-   - 其中 Hiranniramol 的 `pos18_C` 拿到了**线性模型 BH-FDR 三星**（`***`），Labuhn 的
+   - 其中 Hiranniramol 的 `pos18_C` 拿到了**线性模型 BH-FDR 三星**（`***`，q = 7.3×10⁻⁶；该行归因 SNR = 4.96，同为最高等级），Labuhn 的
      `pos18_C` 也进入其 top-6（XGBoost 归因最强）；
    - 与 §R3.2 的 CRISPRon 方向性对照共同构成"该位点正向"的跨模型、跨数据证据。
 
@@ -2383,7 +2383,7 @@ Evidence / Robustness）。计算证据能回答的是"**在同一批数据里�
 | DeepCRISPR 的挖掘结论 | 外部照应来源 | 强度 | 依据 |
 | :--- | :--- | :--- | :--- |
 | PAM 邻近区（18–21 位）是效率的主要决定区 | Hiranniramol + Labuhn | **强** | 三数据集的重要性都集中在同一段位置；motif 主峰含 20 位占比 64.6% / 90.6% / 100% |
-| Pos18 是正向关键位点 | CRISPRon + Hiranniramol + Labuhn | **中–强** | 方向一致率 0.7624；`pos18_C` 在三数据集均入关键特征库，Hiranniramol 达 BH-FDR `***` |
+| Pos18 是正向关键位点 | CRISPRon + Hiranniramol + Labuhn | **中–强** | 本项目 CNN7 与 CRISPRon 方向一致率 0.7624；`pos18_C` 在三数据集均入关键特征库，Hiranniramol 线性模型达 BH-FDR `***`（q = 7.3×10⁻⁶） |
 | PAM 邻位 G/C 富集有利 | Hiranniramol | **中** | G-rich motif 在高效侧、T/C-rich 在低效侧，FDR 极小 |
 | 统计骨架（配对 Bootstrap CI / 置换检验 / 族隔离 BH-FDR）可迁移 | 两数据集流程级 | **中** | 机制照常运行，无环境因子时如实降级而不伪造显著性 |
 | 表观微环境（CTCF / Dnase / H3K4me3 / RRBS）的贡献与交互 | — | **未验证** | 外部数据集无表观通道 |
