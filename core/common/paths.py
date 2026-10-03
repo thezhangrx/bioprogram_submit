@@ -14,10 +14,10 @@
     data/raw/<Dataset>         原始数据（同样按数据集分层）
     data/candidate             候选/待测序列表
     data/config                **每个数据集一个自包含 JSON**（规格 + 特征映射 + 序列长度）
-    results/batches            每次实验批次的完整产物（<batch>/summary/...）
-    results/logs               训练与运行日志
-    results/tables             跨批次汇总表
-    models/weights             训练产出的模型权重（按批次归档）
+    results/train_results/<Dataset>/<run>  每次 run 的完整产物（metrics/predictions/info/归因）
+    results/summary/<Dataset>/             批次级分析产物（tables/reports/figures/train_data/feature_importance）
+    logs/<Dataset>/<run>                   训练与运行日志
+    models/<Dataset>/<run>                 训练产出的模型权重与配置
 
 数据集寻址
 ----------
@@ -48,12 +48,12 @@ DATA_CANDIDATE: Path = DATA_DIR / "candidate"
 DATA_CONFIG: Path = DATA_DIR / "config"
 
 RESULTS_DIR: Path = PROJECT_ROOT / "results"
-RESULTS_BATCHES: Path = RESULTS_DIR / "batches"
-RESULTS_TABLES: Path = RESULTS_DIR / "tables"
-LOGS_DIR: Path = RESULTS_DIR / "logs"
+RESULTS_BATCHES: Path = RESULTS_DIR / "train_results"   #: 逐 run 产物根：<数据集>/<run>/
+RESULTS_TABLES: Path = RESULTS_DIR / "summary"          #: 批次级分析产物根：<数据集>/{tables,reports,figures,...}
+LOGS_DIR: Path = PROJECT_ROOT / "logs"                  #: 训练日志根：<数据集>/<run>/
 
 MODELS_DIR: Path = PROJECT_ROOT / "models"
-MODELS_WEIGHTS: Path = MODELS_DIR / "weights"
+MODELS_WEIGHTS: Path = MODELS_DIR                       #: 模型权重根：<数据集>/<run>/
 
 #: 供 argparse default 使用的字符串形式
 STR_DATA_PROCESSED = str(DATA_PROCESSED)

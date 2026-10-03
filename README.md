@@ -87,7 +87,7 @@
 |---|---|
 | **输入** | `data/raw/<数据集>/*.csv`、`data/config/<数据集>.json`（编码配置 + 序列长度）|
 | **处理** | `core/`（特征工程 → 划分 → 模型 → 归因）、`workflows/`（训练 / 挖掘 / 预测 / 编排）、`analysis/`（汇总 → 统计 → 证据 → 报告 → 图） |
-| **输出** | `results/<batch>/<run>/`（逐 run 指标与预测）、`results/summary/<batch>/`（批次汇总、图、特征库）、`models/<batch>/<run>/`（权重）、`results/logs/<batch>/`（日志） |
+| **输出** | `results/train_results/<数据集>/<run>/`（逐 run 指标与预测）、`results/summary/<数据集>/`（批次汇总、图、特征库）、`models/<数据集>/<run>/`（权重）、`logs/<数据集>/<run>/`（日志） |
 | **模型** | 线性回归 / XGBoost / MLP / 双分支 CNN（卷积核 3/5/7）/ Transformer，共 7 个配置 |
 | **分析目标** | 环境通道与motif的增量预测价值及跨细胞系泛化|
 
@@ -101,7 +101,8 @@
 ★ 用户入口（工作目录）
 train.py                         单次实验（§7）
 data_digging.py                  网格批量挖掘，参数最完整的用户级 CLI（§8）
-rule_discovery.py                赛道二规律发现交付物生成（R1）                       （主运行入口）
+rule_discovery.py                赛道二规律发现交付物生成（R1）         
+run.sh                           主运行入口 ★ 
 
 data/                            数据（不写代码，只放数据与配置）
   raw/<数据集>/                  原始 CSV（输入）
@@ -407,7 +408,7 @@ Summary saved to:
 | **实验名 / 批次名** | `--run-name` `--batch-name` | `--batch-name` 是产物分子目录名 |
 | **自定义模型模块** | `--model-module` | 高级用法，指向自定义实现 |
 
-> 三个输出目录的**默认值**是 `results/batches` / `models/weights` / `results/logs`（会再套一层 `--batch-name`）。
+> 三个输出目录的**默认值**按数据集名推导：`results/train_results/<数据集>` / `models/<数据集>` / `logs/<数据集>`（`--batch-name` 为空时不再套一层）。
 
 `--optimizer` / `--scheduler` / `--activation` / `--num-workers` / `--gpu-id` 在`data_digging.py` 中同名可用，会透传给每个训练子进程。
 
@@ -550,7 +551,7 @@ y_true,y_pred,error
 | 参数 | 说明 |
 |---|---|
 | `--batch-dir` | 直接指定批次目录（**优先级最高**）。可以是"含 runs 的目录"，也可以是 `results/summary/<数据集>` 本身——两种布局都会被自动识别 |
-| `--results-dir` | 结果根目录（默认 `results/batches`）；必须与训练时用的值**一致** |
+| `--results-dir` | 结果根目录（默认 `results/train_results`）；必须与训练时用的值**一致** |
 | `--batch-name` | 批次名，与 `--results-dir` 组合成 `<results-dir>/<batch-name>` |
 | `--latest` | 取 `--results-dir` 下最近修改的批次 |
 | `--split-types` | 只生成所选划分的 CSV，如 `--split-types single all` |
@@ -562,8 +563,8 @@ y_true,y_pred,error
 # 指定批次目录（推荐；两种布局都能识别）
 python -m analysis.collect_results --batch-dir results/summary/DeepCRISPR
 
-# 用 results-dir + batch-name（必须与训练时一致）
-python -m analysis.collect_results --results-dir results/batches --batch-name demo
+# 用 results-dir + batch-name（必须与训练时一致；交付批次名即数据集名）
+python -m analysis.collect_results --results-dir results/train_results --batch-name DeepCRISPR
 
 # 最近修改的批次 / 只要 single 划分
 python -m analysis.collect_results --latest
@@ -824,58 +825,82 @@ results/summary/<数据集>/                批次级汇总（§10 + §11）
 
 > 四维度的定义、每张表的原理与目标见 **§15–§19「项目底层」**。
 
-**两次运行的落点差异**：代码默认写 `results/batches/<batch>/`、`models/weights/<batch>/`、`results/logs/<batch>/`；
-**本次提交**把三者分别指到 `results/train_results/<数据集>`、`models/<数据集>`、`logs/<数据集>`，因此没有 batch 层。
+**落点说明**：代码默认写 `results/train_results/<数据集>`、`models/<数据集>`、`logs/<数据集>`（`--batch-name` 为空，不再有 batch 层），
+与本次提交的产物结构一致。
 下游（§10 / §11）需要分别解析「runs 根」与「summary 根」——两者在同一套命令里都能正确识别。
 
 ---
 
 ## 14.完整流程代码:
 
-把四个阶段连起来（以 DeepCRISPR 为例；`<数据集>` 替换为 `Hiranniramol` / `Labuhn` 时需要改用纯序列 config 与对应 `--format`）：
+**主运行入口（推荐）**：仓库根目录的 `run.sh` 把下列各步串成一条流程。每一步都按各程序自身的默认参数执行，只补上必需的路径参数。
 
 ```bash
-# 阶段 0：环境（§3）
-pip install -r deploy/requirements.txt   # 依赖清单
+# 阶段 0（§3）：先激活带依赖的解释器；或按依赖清单安装
+pip install -r deploy/requirements.txt
 
+# 全流程：读取映射 → 特征工程 → 数据 QC（接入层 + 批次层）→ 训练 → 汇总 → 分析 → 交付物
+bash run.sh
+
+# 也可只跑其中一段
+bash run.sh prep          # ① 读取映射 + 特征工程 + 接入层 QC（schema 对账）
+bash run.sh train         # ② 受控实验训练（幂等：已完成的 run 自动跳过）
+bash run.sh summary       # ③ 结果汇总 + 关键调控特征库
+bash run.sh analysis      # ④ 分析层（批次层 Data QC / 统计检验 / motif / 环境图 / 报告）
+bash run.sh deliverable   # ⑤ 赛道二交付物（CSV + Excel）
+
+# 可选环境变量
+DATASETS="DeepCRISPR" bash run.sh     # 只复跑指定数据集
+LOG_DIR=logs/run_demo bash run.sh     # 指定脚本日志目录
+```
+
+说明：
+
+- `run.sh` 只用两个环境变量：`DATASETS`（默认三个数据集）与 `LOG_DIR`（默认 `logs/run_<时间戳>`）；
+- `run.sh` 不包含第三方平台（CRISPRon）验证步骤；如需复现 §R3.2 的对照，按下方「逐项执行」手动运行；
+- 外部数据集（`has_environment = false`）在 `run.sh` 中限定 `--split-types single`，以与仓库交付的 7 个 run 一致。
+
+**逐项执行**（等价于 `run.sh` 内部实际调用的命令，以 DeepCRISPR 为例）
+
+```bash
 # 阶段 1：预处理（§6）—— 原始 CSV → 张量 + feature_schema.json
+#   --format 省略时按列名自动识别；三个数据集均可自动识别
 python core/features/engineering/feature_engineering.py \
   --raw-data   data/raw/DeepCRISPR \
   --output-dir data/processed/DeepCRISPR \
   --config     data/config/DeepCRISPR.json
 
-# 校验「schema 声明 == 实际张量」
+# 接入层 Data QC：校验「schema 声明 == 实际张量」
 python core/features/engineering/validate_feature_schema.py --all
 
 # 阶段 2：数据挖掘（§8）—— 展开实验网格并逐格训练
-#  先看计划（不训练、不写文件）
+#   DeepCRISPR：4 条表观通道 → 16 种环境组合 × 3 种划分 × 7 种配置 = 1 344 run
 python data_digging.py --data-set DeepCRISPR \
-  --training-scope-epis CTCF Dnase H3K4me3 RRBS \
-  --models linear xgboost mlp transformer cnn \
-  --split-types single all mixed --mixed-seeds 42 43 44 45 \
-  --cnn-kernels 3 5 7 \
-  --batch-name full --results-dir results/train_results/DeepCRISPR \
-  --model-dir models/DeepCRISPR --logs-dir logs/DeepCRISPR --dry-run
+  --results-dir results/train_results/DeepCRISPR \
+  --model-dir   models/DeepCRISPR \
+  --logs-dir    logs/DeepCRISPR
+#   加 --dry-run 只打印实验计划，不训练、不写文件
 
-#  正式训练（去掉 --dry-run）
-python data_digging.py --data-set DeepCRISPR \
-  --training-scope-epis CTCF Dnase H3K4me3 RRBS \
-  --models linear xgboost mlp transformer cnn \
-  --split-types single all mixed --mixed-seeds 42 43 44 45 \
-  --cnn-kernels 3 5 7 \
-  --batch-name full --results-dir results/train_results/DeepCRISPR \
-  --model-dir models/DeepCRISPR --logs-dir logs/DeepCRISPR --workers 4
+#   Hiranniramol / Labuhn：无表观通道，仓库交付为单细胞系划分（各 7 run）
+python data_digging.py --data-set Hiranniramol \
+  --results-dir results/train_results/Hiranniramol \
+  --model-dir   models/Hiranniramol \
+  --logs-dir    logs/Hiranniramol --split-types single
 
 # 阶段 3：结果汇总（§10）
 python -m analysis.collect_results --batch-dir results/summary/DeepCRISPR
 python analysis/importance_extraction.py --batch_dir results/summary/DeepCRISPR
 
-# 阶段 4：可视化与分析（§11）
+# 阶段 4：分析层（§11）—— 批次层 Data QC、统计检验、motif 发现、可视化与报告
 python -m analysis.pipeline --batch-dir results/summary/DeepCRISPR
 
-# 阶段 5（可选）：CNN7 × CRISPRon 的 Pos18 C→A 一致性验证
-python analysis/candidates/wt_position18_selection.py           # 挑 WT 位点候选
-python -m analysis.crispron_validation                          # 全流程（windows/crispron/model/table）
+# 阶段 5：赛道二交付物（规则发现：统计门 → 效应门 → 跨细胞系泛化门）
+python rule_discovery.py --print-config      # 打印生效阈值
+python rule_discovery.py                     # 自动探测全部批次 → results/赛道二_results/
+
+# 阶段 6（可选，run.sh 不含）：CNN7 × CRISPRon 的 Pos18 C→A 一致性验证（§R3.2）
+python analysis/candidates/wt_position18_selection.py
+python -m analysis.crispron_validation
 ```
 
 ---
@@ -978,10 +1003,13 @@ python -m analysis.crispron_validation                          # 全流程（wi
 
 | 维度 | 回答的问题 | 本项目使用的量 | 主要产物 |
 | :--- | :--- | :--- | :--- |
-| **Effect（效应量）** | 因素改变后，预测/活性改变了多少？方向如何？ | 配对 ΔR²、ΔRMSE/ΔMAE、环境主效应、交互 ΔR²、ANOVA `effect`、motif OR | `environment_{conditional_delta_r2,main_effects,edges,interactions}.csv`、`anova_results.csv`、`motif_enrichment.csv` |
-| **Importance（预测贡献）** | 模型前向推理时多大程度依赖这个位点/通道？（**一律无符号幅度**） | IG、ISM、TreeSHAP、Attention，以及各自的 SNR | `attribution_summary.csv`、`motif_candidates.csv` |
+| **Effect（效应量）** | 因素改变后，预测/活性改变了多少？方向如何？ | `Linear_Coefficient`（带符号系数）、配对 ΔR²、ΔRMSE/ΔMAE、环境主效应、交互 ΔR²、ANOVA `effect`、motif OR | `environment_{conditional_delta_r2,main_effects,edges,interactions}.csv`、`anova_results.csv`、`motif_enrichment.csv` |
+| **Importance（预测贡献）** | 模型前向推理时多大程度依赖这个位点/通道？（**一律无符号幅度**） | IG、ISM、TreeSHAP、Attention | `attribution_summary.csv`、`motif_candidates.csv` |
 | **Statistical Evidence（统计证据）** | 观察到的效应是真实信号还是纯随机噪声？ | p 值、FDR(q)、Bootstrap CI、F 统计量 | `bootstrap_*.csv`、`permutation_results.csv`、`anova_results.csv` |
-| **Robustness（稳健性）** | 换模型 / 换种子 / 换细胞系 / 换划分后，结论还站得住吗？ | 方向一致率、LOCO、跨细胞系 CI 重叠 | `loco_performance.csv`、`bootstrap_cellline_effects.csv` |
+| **Robustness（稳健性）** | 换模型 / 换种子 / 换细胞系 / 换划分 / 换外部数据后，结论还站得住吗？ | 归因 SNR（`SHAP_SNR`/`IG_SNR`/`ISM_SNR`/`Attention_SNR`）、跨细胞系支持比例（`cellline_ratio`）、方向一致率、LOCO、跨细胞系 CI 重叠 | `loco_performance.csv`、`bootstrap_cellline_effects.csv`、`microenv_and_motif.csv` |
+
+> 表中 **Effect 为模型预测侧的量**（配对 ΔR²、环境主效应与交互、ANOVA `effect` 等），不等同于实测编辑效应；
+> 实测侧的对照量见数据集标签与 `motif_candidates.mean_effect`。
 
 ---
 
@@ -1471,7 +1499,7 @@ CSV 是**原始交付文件**，Excel 只是同一批数据的汇总视图，两
 | `FDR_pass` | 第一层判据是否通过：`BH_FDR <` 阈值（阈值见 `motif_fdr_threshold`） |
 | `fdr_source` | FDR 口径：`candidate`（取 `motif_candidates.FDR`）或 `enrichment`（取 `motif_enrichment.FDR`） |
 | `enrichment_FDR` | 另一来源（`motif_enrichment`）的 q 值，供切换口径时对照，不参与筛选 |
-| `ISM_effect` | 第二层判据用的 ISM 效应，取自 `ism_effect_source` 指定的口径 |
+| `ISM_effect` | 第二层判据用的效应量，取自 `ism_effect_source` 指定的口径。默认 `candidate` 时即 `motif_candidates.mean_effect`，含义为**携带者与非携带者的实测效率差**（来自数据集标签，不是模型预测值）；模型侧逐实例 ISM 均值见 `ISM_effect_instances` |
 | `ISM_effect_abs` | `\|ISM_effect\|` |
 | `ISM_effect_pass` | 第二层判据是否通过：`\|ISM_effect\| ≥` 阈值，且**只在第一层已通过的行上**评估 |
 | `ism_effect_source` | 效应口径：`candidate`（motif 级 `mean_effect`）或 `instances`（逐实例 ISM 均值） |
@@ -2406,3 +2434,5 @@ Evidence / Robustness）。计算证据能回答的是"**在同一批数据里�
 # R4.平台建设说明
 
 > 平台计划建设Web App界面供可视化操作，但由于时间紧凑，未完成Debug，仍存在很多问题，故不在正式项目中展示。
+
+**方法文档索引.** 平台涉及的模型、指标、XAI 与统计方法的对应章节：§16 模型性能指标；§17 可解释性方法（§17.0 白名单 · §17.1 线性 · §17.2 XGBoost · §17.3 MLP · §17.4 CNN · §17.5 Transformer · §17.6 SNR 分档）；§18 统计分析方法（§18.1 ANOVA · §18.2 置换检验 · §18.3 Fisher · §18.4 Bootstrap）；§19 统计量（§19.1 p 值 · §19.2 FDR · §19.3 CI · §19.4 η²）。

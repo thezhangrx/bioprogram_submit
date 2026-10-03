@@ -30,7 +30,7 @@ class EnvironmentPlan:
     conditional_effect: bool = True
     main_effect: bool = True
     interaction: bool = False
-    anova: bool = False
+    anova: bool = True                   # 默认执行：交付批次含 anova_results.csv
 
 
 @dataclass
@@ -39,7 +39,7 @@ class SequencePlan:
     position_attribution: bool = True
     ism: bool = True
     motif_discovery: bool = True
-    motif_enrichment: bool = False
+    motif_enrichment: bool = True        # 默认执行：交付批次含 motif_enrichment.csv
 
 
 @dataclass

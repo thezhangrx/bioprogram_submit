@@ -898,8 +898,8 @@ def _resolve_batch_paths(results_dir: str, batch_name: str, batch_dir: str,
                          latest: bool, all_batches: bool) -> List[Path]:
     """把 CLI 参数解析为**实际存在的**批次目录列表。
 
-    批次目录的权威位置是 ``results/batches/<batch_name>``（见 core/common/paths.py）。
-    为兼容旧命令行，传 ``--results_dir results`` 会被自动补成 ``results/batches``。
+    批次目录的权威位置是 ``RESULTS_BATCHES/<batch_name>``（见 core/common/paths.py）。
+    为兼容旧命令行，传入更上层的根目录（如 ``--results_dir results``）会被自动补全为 ``RESULTS_BATCHES``。
     """
     if batch_dir:
         p = Path(batch_dir).expanduser().resolve()
@@ -908,9 +908,10 @@ def _resolve_batch_paths(results_dir: str, batch_name: str, batch_dir: str,
         return [p]
 
     root = Path(results_dir).expanduser().resolve()
-    # 兼容旧约定：批次实际在 results/batches 下，而用户传了 results
-    if not _looks_like_batch(root) and (root / "batches").is_dir():
-        root = (root / "batches").resolve()
+    # 兼容旧约定：批次根目录位于 RESULTS_BATCHES，而用户只给到上层根目录
+    _batch_root_name = Path(RESULTS_BATCHES).name
+    if not _looks_like_batch(root) and (root / _batch_root_name).is_dir():
+        root = (root / _batch_root_name).resolve()
 
     if not root.is_dir():
         raise SystemExit(f"[Error] 批次根目录不存在: {root}")
@@ -945,7 +946,7 @@ def main():
     parser.add_argument('--results_dir', type=str, default=str(RESULTS_BATCHES),
                         help=f'批次根目录（默认 {RESULTS_BATCHES}）')
     parser.add_argument('--batch', '--batch_name', dest='batch_name', type=str, default='',
-                        help='results/batches/ 下的批次名，例如 ultimate_run')
+                        help='results/train_results/ 下的批次名（或 summary 目录名）')
     parser.add_argument('--batch_dir', type=str, default='', help='批次目录的直接路径（覆盖 --batch）')
     parser.add_argument('--latest', action='store_true', help='处理最新的批次（缺省行为）')
     parser.add_argument('--all_batches', action='store_true', help='处理所有批次')

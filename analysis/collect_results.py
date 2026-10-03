@@ -427,14 +427,14 @@ def main() -> int:
         description="Collect and analyze CRISPR-Cas9 experiment results.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""示例：
-  # 默认读取 results/batches 下最近修改的批次
+  # 默认读取 results/train_results 下最近修改的批次
   python -m analysis.collect_results --latest
 
   # 指定批次名（--results-dir 必须与训练时用的值一致）
-  python -m analysis.collect_results --results-dir results/batches --batch-name smoke
+  python -m analysis.collect_results --results-dir results/train_results --batch-name DeepCRISPR
 
   # 直接指定批次目录
-  python -m analysis.collect_results --batch-dir results/batches/smoke
+  python -m analysis.collect_results --batch-dir results/train_results/DeepCRISPR
 
   # 只汇总 single 划分
   python -m analysis.collect_results --batch-name smoke --split-types single
@@ -442,8 +442,8 @@ def main() -> int:
 产物：<batch>/summary/train_data/{single,all,mixed}_cell_line_result.csv 等
 退出码：0 成功 / 1 批次目录不存在 / 2 用法错误
 """)
-    parser.add_argument("--results-dir", type=str, default="results/batches",
-                        help="结果根目录（默认 results/batches；必须与训练时的 --results-dir 一致）")
+    parser.add_argument("--results-dir", type=str, default="results/train_results",
+                        help="结果根目录（默认 results/train_results；必须与训练时的 --results-dir 一致）")
     parser.add_argument("--batch-name", type=str, default="", help="批次名，如 smoke")
     parser.add_argument("--batch-dir", type=str, default="",
                         help="直接指定批次目录（优先级高于 --batch-name）")

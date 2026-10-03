@@ -121,10 +121,10 @@ def build_code_fingerprint() -> str:
 
 # 注意：不再提供 data-dir 默认值。请用 --data-set <名称> 或 --data-dir <路径>。
 DEFAULT_DATA_DIR = None
-DEFAULT_MODEL_DIR = "models/weights"
-DEFAULT_RESULTS_DIR = "results/batches"
-DEFAULT_LOGS_DIR = "results/logs"
-DEFAULT_BATCH_NAME = "default"
+DEFAULT_MODEL_DIR = None        # 运行时按数据集补成 models/<数据集>
+DEFAULT_RESULTS_DIR = None      # 运行时按数据集补成 results/train_results/<数据集>
+DEFAULT_LOGS_DIR = None         # 运行时按数据集补成 logs/<数据集>
+DEFAULT_BATCH_NAME = ""
 DEFAULT_RANDOM_SEED = 42
 
 DEFAULT_TRAIN_RATIO = 0.70
@@ -949,6 +949,13 @@ def execute_args(args):
 
 def main():
     args = parse_args()
+
+    # 输出目录默认值与交付结构一致：models/<数据集> · results/train_results/<数据集> · logs/<数据集>
+    # （用 --data-dir 时取该目录名作为 <数据集>；显式传入的 --model-dir/--results-dir/--logs-dir 优先）
+    dataset_tag = args.data_set or Path(args.data_dir or "").name
+    args.model_dir = args.model_dir or f"models/{dataset_tag}"
+    args.results_dir = args.results_dir or f"results/train_results/{dataset_tag}"
+    args.logs_dir = args.logs_dir or f"logs/{dataset_tag}"
     return execute_args(args)
 
 

@@ -524,9 +524,12 @@ def parse_args():
                     "由 predict.py 拆分而来: 本程序不再负责 mixed 十折/候选预测 (见 predict.py).")
     parser.add_argument("--batch-name", default="", type=str, help="批次名称，为空时直接存放在根目录")
     add_dataset_arguments(parser)
-    parser.add_argument("--model-dir", type=str, default="models/weights")
-    parser.add_argument("--results-dir", type=str, default="results/batches")
-    parser.add_argument("--logs-dir", type=str, default="results/logs")
+    parser.add_argument("--model-dir", type=str, default=None,
+                        help="模型输出根目录（默认 models/<数据集>）")
+    parser.add_argument("--results-dir", type=str, default=None,
+                        help="训练产物根目录（默认 results/train_results/<数据集>）")
+    parser.add_argument("--logs-dir", type=str, default=None,
+                        help="日志根目录（默认 logs/<数据集>）")
 
     # 第4步选项2接口: 由勾选的表观特征展开网格组合; 或显式 --environments
     parser.add_argument("--training-scope-epis", nargs="+", default=None,
@@ -588,7 +591,15 @@ def parse_args():
     parser.add_argument("--threads-per-worker", type=int, default=0,
                         help="并发时每实验 CPU 线程数封顶 (0=不封顶; 封顶可能改变浮点结果, 默认不启用)")
     parser.add_argument("--dry-run", action="store_true")
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    # 输出目录默认值与交付结构一致：models/<数据集> · results/train_results/<数据集> · logs/<数据集>
+    # （用 --data-dir 时取该目录名作为 <数据集>；显式传入的 --model-dir/--results-dir/--logs-dir 优先）
+    dataset_tag = args.data_set or Path(args.data_dir or "").name
+    args.model_dir = args.model_dir or f"models/{dataset_tag}"
+    args.results_dir = args.results_dir or f"results/train_results/{dataset_tag}"
+    args.logs_dir = args.logs_dir or f"logs/{dataset_tag}"
+    return args
 
 
 def main():

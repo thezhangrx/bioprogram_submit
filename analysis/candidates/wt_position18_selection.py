@@ -32,7 +32,7 @@
 ----
     python analysis/candidates/wt_position18_selection.py --dataset DeepCRISPR
 
-输出（默认 ``results/tables/candidates/``）
+输出（默认 ``results/candidates/``）
 ------------------------------------------
     wt_position18_candidates.csv          最终 8 条的全部字段
     wt_position18_selection_audit.csv     过滤漏斗 + 分层依据 + 每次取舍的理由
@@ -58,7 +58,7 @@ if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
 from analysis.leakage import canonical_group_key, revcomp                      # noqa: E402
-from core.common.paths import RESULTS_TABLES, resolve_dataset                  # noqa: E402
+from core.common.paths import RESULTS_DIR, resolve_dataset                  # noqa: E402
 from core.data.cell_line_division import (                          # noqa: E402
     divide_data, load_feature_schema,
 )
@@ -753,7 +753,7 @@ def mentor_table(picks: pd.DataFrame) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description="挑选代表性 WT sgRNA（Position 18 = C）")
     ap.add_argument("--dataset", default="DeepCRISPR", help="数据集名称（默认 DeepCRISPR）")
-    ap.add_argument("--out-dir", default=str(RESULTS_TABLES / "candidates"))
+    ap.add_argument("--out-dir", default=str(RESULTS_DIR / "candidates"))
     ap.add_argument("--seed", type=int, default=42, help="划分种子（与论文一致，默认 42）")
     ap.add_argument("--http-workers", type=int, default=6,
                     help="并行取 hg19 序列的线程数（默认 6，对 UCSC 保持克制）")
